@@ -1,0 +1,126 @@
+[gd_scene load_steps=12 format=3 uid="uid://bj73pp6ds87xp"]
+
+[ext_resource type="Script" path="res://scenes/charapters/players/charapter_movement.gd" id="1_o3ocm"]
+[ext_resource type="Script" path="res://scenes/charapters/players/components/state_macine.gd" id="2_xfakk"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_1aivm"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_m6r0o"]
+
+[sub_resource type="Animation" id="Animation_ivw06"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("camera_node:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 1.57333, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_mf8o3"]
+resource_name = "idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("camera_node:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 1.709, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_cv78p"]
+resource_name = "run"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("camera_node:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 1.70923, 0), Vector3(-0.128401, 1.61881, 0), Vector3(0, 1.70923, 0), Vector3(0.128, 1.619, 0), Vector3(0, 1.70923, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ythle"]
+resource_name = "walk"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("camera_node:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 1.70923, 0), Vector3(-0.128401, 1.61881, 0), Vector3(0, 1.70923, 0), Vector3(0.128, 1.619, 0), Vector3(0, 1.70923, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_e7728"]
+_data = {
+"RESET": SubResource("Animation_ivw06"),
+"idle": SubResource("Animation_mf8o3"),
+"run": SubResource("Animation_cv78p"),
+"walk": SubResource("Animation_ythle")
+}
+
+[sub_resource type="BoxMesh" id="BoxMesh_uoq5c"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_p2p7g"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+
+[node name="Charapter" type="CharacterBody3D" node_paths=PackedStringArray("_StateMacine", "camera", "camera_cur")]
+collision_mask = 6
+script = ExtResource("1_o3ocm")
+_StateMacine = NodePath("components/StateMacine")
+camera = NodePath("camera_node")
+camera_cur = NodePath("camera_node/Camera3D")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_1aivm")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_m6r0o")
+
+[node name="camera_node" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.57333, 0)
+
+[node name="Camera3D" type="Camera3D" parent="camera_node"]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_e7728")
+}
+playback_default_blend_time = 0.2
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.13157, -4.2603)
+mesh = SubResource("BoxMesh_uoq5c")
+
+[node name="components" type="Node" parent="."]
+
+[node name="StateMacine" type="Node" parent="components"]
+script = ExtResource("2_xfakk")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_p2p7g")

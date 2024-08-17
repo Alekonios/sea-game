@@ -1,0 +1,52 @@
+[gd_scene load_steps=7 format=3 uid="uid://bfg8v58buqo5s"]
+
+[ext_resource type="Texture2D" uid="uid://b2sqmwygflg5e" path="res://addons/kenney_prototype_textures/green/texture_13.png" id="1_uv4s5"]
+[ext_resource type="PackedScene" uid="uid://dlbcpalq358am" path="res://scenes/hud/main_menu.tscn" id="2_ijld6"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rmd7l"]
+albedo_texture = ExtResource("1_uv4s5")
+uv1_triplanar = true
+
+[sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_8d0og"]
+ground_color = Color(1, 1, 1, 1)
+
+[sub_resource type="Sky" id="Sky_bek2k"]
+sky_material = SubResource("PhysicalSkyMaterial_8d0og")
+
+[sub_resource type="Environment" id="Environment_t45qn"]
+background_mode = 2
+sky = SubResource("Sky_bek2k")
+volumetric_fog_anisotropy = 0.26
+volumetric_fog_length = 10.79
+volumetric_fog_sky_affect = 0.105
+
+[node name="Node3D" type="Node3D"]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00137329, 0, 0.0420761)
+use_collision = true
+collision_layer = 2
+collision_mask = 2
+size = Vector3(15.98, 1, 16.0585)
+material = SubResource("StandardMaterial3D_rmd7l")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="CSGBox3D"]
+transform = Transform3D(-0.720742, -0.5604, -0.408023, -0.683445, 0.476043, 0.553431, -0.115906, 0.677743, -0.726107, 0, 4.0013, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="CSGBox3D/DirectionalLight3D"]
+environment = SubResource("Environment_t45qn")
+
+[node name="MainMenu" parent="." instance=ExtResource("2_ijld6")]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://scenes/charapters/players/Charapter.tscn")
+spawn_path = NodePath("../Node3D")
+
+[node name="Node3D" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.76929, 0)

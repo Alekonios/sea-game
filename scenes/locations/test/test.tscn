@@ -1,0 +1,153 @@
+[gd_scene load_steps=12 format=3 uid="uid://bfg8v58buqo5s"]
+
+[ext_resource type="Script" path="res://scenes/locations/test/test.gd" id="1_qwl7r"]
+[ext_resource type="Texture2D" uid="uid://b2sqmwygflg5e" path="res://addons/kenney_prototype_textures/green/texture_13.png" id="1_uv4s5"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rmd7l"]
+albedo_texture = ExtResource("1_uv4s5")
+uv1_triplanar = true
+
+[sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_8d0og"]
+ground_color = Color(1, 1, 1, 1)
+
+[sub_resource type="Sky" id="Sky_bek2k"]
+sky_material = SubResource("PhysicalSkyMaterial_8d0og")
+
+[sub_resource type="Environment" id="Environment_t45qn"]
+background_mode = 2
+sky = SubResource("Sky_bek2k")
+volumetric_fog_anisotropy = 0.26
+volumetric_fog_length = 10.79
+volumetric_fog_sky_affect = 0.105
+
+[sub_resource type="BoxMesh" id="BoxMesh_3n2h3"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_crhid"]
+
+[sub_resource type="Animation" id="Animation_fey2n"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.858651, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_kyc8k"]
+resource_name = "sd"
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0.858651, 0), Vector3(0, 0.858651, 0), Vector3(0, 5.71232, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1ttlr"]
+_data = {
+"RESET": SubResource("Animation_fey2n"),
+"sd": SubResource("Animation_kyc8k")
+}
+
+[node name="Node3D" type="Node3D"]
+script = ExtResource("1_qwl7r")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00137329, 0, 0.0420761)
+use_collision = true
+collision_layer = 2
+collision_mask = 2
+size = Vector3(15.98, 1, 16.0585)
+material = SubResource("StandardMaterial3D_rmd7l")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="CSGBox3D"]
+transform = Transform3D(-0.720742, -0.5604, -0.408023, -0.683445, 0.476043, 0.553431, -0.115906, 0.677743, -0.726107, 0, 4.0013, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="CSGBox3D/DirectionalLight3D"]
+environment = SubResource("Environment_t45qn")
+
+[node name="MainMenu" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -34.5
+offset_top = -20.0
+offset_right = 34.5
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="MainMenu/VBoxContainer"]
+layout_mode = 2
+text = "Title
+"
+horizontal_alignment = 1
+
+[node name="Host-button" type="Button" parent="MainMenu/VBoxContainer"]
+layout_mode = 2
+text = "Host game"
+
+[node name="Join-button" type="Button" parent="MainMenu/VBoxContainer"]
+layout_mode = 2
+text = "Join game"
+
+[node name="adres" type="LineEdit" parent="MainMenu/VBoxContainer"]
+layout_mode = 2
+placeholder_text = "Host IP"
+alignment = 1
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://scenes/charapters/players/Charapter.tscn")
+spawn_path = NodePath("../Node3D2")
+
+[node name="Node3D" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.76929, 0)
+
+[node name="Node3D2" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11.9199, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.140215, 0, 0, 0, 1, 0, 0.858651, 0)
+mesh = SubResource("BoxMesh_3n2h3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+shape = SubResource("BoxShape3D_crhid")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_1ttlr")
+}
+autoplay = "sd"
+
+[connection signal="pressed" from="MainMenu/VBoxContainer/Host-button" to="." method="_on_hostbutton_pressed"]
+[connection signal="pressed" from="MainMenu/VBoxContainer/Join-button" to="." method="_on_joinbutton_pressed"]
