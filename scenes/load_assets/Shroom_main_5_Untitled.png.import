@@ -2,17 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cd2cwywywf70u"
-path.s3tc="res://.godot/imported/texture_01.png-60e3b3d3143b179c069dbcbff77ff160.s3tc.ctex"
+uid="uid://cu8ht4ah48w23"
+path.s3tc="res://.godot/imported/Shroom_main_5_Untitled.png-7f51cfc0939060565c525b90cff1eb7c.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
+generator_parameters={
+"md5": "82e02e41a13163827841da3ceb2da5cc"
+}
 
 [deps]
 
-source_file="res://addons/kenney_prototype_textures/dark/texture_01.png"
-dest_files=["res://.godot/imported/texture_01.png-60e3b3d3143b179c069dbcbff77ff160.s3tc.ctex"]
+source_file="res://scenes/load_assets/Shroom_main_5_Untitled.png"
+dest_files=["res://.godot/imported/Shroom_main_5_Untitled.png-7f51cfc0939060565c525b90cff1eb7c.s3tc.ctex"]
 
 [params]
 

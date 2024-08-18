@@ -16,10 +16,13 @@ var run = false
 @export var camera : Node3D
 @export var camera_cur = Camera3D
 
+@onready var player_meshes = [$Shroom_main_5/Armature_001/Cube_003, $Shroom_main_5/Armature_001/Skeleton3D/Cube_001, $Shroom_main_5/Armature_001/Skeleton3D/Cube_002, $Shroom_main_5/Armature_001/Skeleton3D/Cube_005, $Shroom_main_5/Armature_001/Skeleton3D/Cube_006, $Shroom_main_5/Armature_001/Skeleton3D/Cube_007, $Shroom_main_5/Armature_001/Skeleton3D/Cube_008, $Shroom_main_5/Armature_001/Skeleton3D/Cube_009, $Shroom_main_5/Armature_001/Skeleton3D/Cube_199]
+
 func _enter_tree() -> void:
 	set_multiplayer_authority(str(name).to_int())
 
 func _ready() -> void:
+	hide_ob()
 	if not is_multiplayer_authority(): return
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	
@@ -27,7 +30,7 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	print(camera_cur)
-	if not is_multiplayer_authority(): return
+	if !is_multiplayer_authority(): return
 	
 	if not is_on_floor():
 		velocity += get_gravity() * 2 * delta
@@ -44,8 +47,8 @@ func _physics_process(delta: float) -> void:
 	var input_dir := Input.get_vector("left", "right", "forward", "back")
 	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if direction:
-		velocity.x = direction.x * SPEED * delta * 60
-		velocity.z = direction.z * SPEED * delta * 60
+		velocity.x = lerp(velocity.x, direction.x * SPEED, delta * 10)
+		velocity.z = lerp(velocity.z, direction.z * SPEED, delta * 10)
 		if run:
 			SPEED = 6.0
 			_StateMacine.state = _StateMacine.States.Run
@@ -66,3 +69,9 @@ func _input(event):
 		rotate_y(deg_to_rad(-event.relative.x * mouse_sens))
 		camera.rotate_x(deg_to_rad(-event.relative.y * mouse_sens))
 		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-70), deg_to_rad(90))
+		
+func hide_ob():
+	if is_multiplayer_authority():
+		
+		for i in player_meshes:
+			i.transparency = 1
