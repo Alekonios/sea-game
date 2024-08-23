@@ -904,6 +904,9 @@ properties/2/replication_mode = 1
 properties/3/path = NodePath("Sounds/Move-Wood:playing")
 properties/3/spawn = true
 properties/3/replication_mode = 1
+properties/4/path = NodePath("Shroom_main_5/AnimationPlayer:current_animation")
+properties/4/spawn = true
+properties/4/replication_mode = 1
 
 [node name="Charapter" type="CharacterBody3D" node_paths=PackedStringArray("_SoundComponent", "_StateMacine", "camera", "camera_cur")]
 collision_mask = 6
