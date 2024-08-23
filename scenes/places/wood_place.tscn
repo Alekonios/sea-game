@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://cp3gje0nkhous"]
+
+[node name="WoodPlace" type="Area3D" groups=["WOOD"]]
+collision_layer = 16
+collision_mask = 0

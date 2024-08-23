@@ -11,6 +11,7 @@ var mouse_sens = 0.1
 
 var run = false
 
+@export var _SoundComponent : SoundComponent
 @export var _StateMacine : StateMacine
 
 @export var camera : Node3D
@@ -22,6 +23,7 @@ func _enter_tree() -> void:
 	set_multiplayer_authority(str(name).to_int())
 
 func _ready() -> void:
+	$Shroom_main_5/Armature_001/Skeleton3D/SkeletonIK3D.start()
 	hide_ob()
 	if not is_multiplayer_authority(): return
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -29,7 +31,6 @@ func _ready() -> void:
 	camera_cur.current = is_multiplayer_authority()
 
 func _physics_process(delta: float) -> void:
-	print(camera_cur)
 	if !is_multiplayer_authority(): return
 	
 	if not is_on_floor():
@@ -52,9 +53,11 @@ func _physics_process(delta: float) -> void:
 		if run:
 			SPEED = 6.0
 			_StateMacine.state = _StateMacine.States.Run
+			_SoundComponent.checkplace()
 		else:
 			SPEED = 3.0
 			_StateMacine.state = _StateMacine.States.Walk
+			_SoundComponent.checkplace()
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
@@ -72,6 +75,5 @@ func _input(event):
 		
 func hide_ob():
 	if is_multiplayer_authority():
-		
 		for i in player_meshes:
 			i.transparency = 1

@@ -1,8 +1,12 @@
-[gd_scene load_steps=14 format=3 uid="uid://bfg8v58buqo5s"]
+[gd_scene load_steps=26 format=3 uid="uid://bfg8v58buqo5s"]
 
 [ext_resource type="Script" path="res://scenes/locations/test/test.gd" id="1_qwl7r"]
 [ext_resource type="Texture2D" uid="uid://cd2cwywywf70u" path="res://addons/kenney_prototype_textures/dark/texture_01.png" id="2_16wt7"]
 [ext_resource type="Texture2D" uid="uid://c7o1wi2w5rlu0" path="res://addons/kenney_prototype_textures/dark/texture_05.png" id="3_adnmp"]
+[ext_resource type="Texture2D" uid="uid://dikf5a8h2q6uu" path="res://addons/kenney_prototype_textures/orange/texture_01.png" id="4_dyjvv"]
+[ext_resource type="Script" path="res://scenes/components/hitbox_component.gd" id="5_bpwuu"]
+[ext_resource type="Script" path="res://scenes/locations/test/lb.gd" id="5_jqn8k"]
+[ext_resource type="PackedScene" uid="uid://cp3gje0nkhous" path="res://scenes/places/wood_place.tscn" id="7_w2or7"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rmd7l"]
 albedo_texture = ExtResource("2_16wt7")
@@ -64,6 +68,61 @@ _data = {
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_50l5o"]
 albedo_texture = ExtResource("3_adnmp")
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_egmdi"]
+properties/0/path = NodePath("MeshInstance3D:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath("Label3D:text")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath("CSGBox3D15:visible")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+properties/3/path = NodePath("CSGBox3D16:visible")
+properties/3/spawn = true
+properties/3/replication_mode = 1
+properties/4/path = NodePath("CSGBox3D17:visible")
+properties/4/spawn = true
+properties/4/replication_mode = 1
+properties/5/path = NodePath("CSGBox3D18:visible")
+properties/5/spawn = true
+properties/5/replication_mode = 1
+properties/6/path = NodePath("CSGBox3D19:visible")
+properties/6/spawn = true
+properties/6/replication_mode = 1
+properties/7/path = NodePath("CSGBox3D20:visible")
+properties/7/spawn = true
+properties/7/replication_mode = 1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5nlxr"]
+albedo_texture = ExtResource("4_dyjvv")
+uv1_scale = Vector3(3.15, 3.15, 3.15)
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o6dro"]
+albedo_color = Color(1, 0, 0, 1)
+uv1_scale = Vector3(3.15, 3.15, 3.15)
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fvy82"]
+size = Vector3(0.818821, 1.39886, 1.10281)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xiydh"]
+albedo_color = Color(1, 0, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_24hqa"]
+albedo_color = Color(0.176471, 0, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nuvim"]
+albedo_color = Color(0.190762, 0.190762, 0.190762, 1)
+metallic = 1.0
+roughness = 0.31
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1gxbc"]
+size = Vector3(4.05621, 0.523193, 4.4859)
 
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_qwl7r")
@@ -240,6 +299,101 @@ collision_layer = 2
 collision_mask = 2
 size = Vector3(0.929016, 0.247559, 1)
 material = SubResource("StandardMaterial3D_50l5o")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_egmdi")
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.83399, 5.436)
+
+[node name="CSGBox3D13" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00311279, 0.600478, 4.57689)
+size = Vector3(0.546509, 1, 0.632446)
+material = SubResource("StandardMaterial3D_5nlxr")
+
+[node name="CSGBox3D14" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0354029, 0.937358, 4.53821)
+size = Vector3(0.101349, 0.610352, 0.112762)
+material = SubResource("StandardMaterial3D_o6dro")
+script = ExtResource("5_jqn8k")
+
+[node name="Hitbox" type="Area3D" parent="CSGBox3D14" node_paths=PackedStringArray("Usable_Object")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.230174, 0)
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("5_bpwuu")
+Usable_Object = NodePath("..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CSGBox3D14/Hitbox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0357304, 0.199432, 0.000808716)
+shape = SubResource("BoxShape3D_fvy82")
+
+[node name="CSGBox3D15" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0189819, 1.00113, 15.8693)
+visible = false
+size = Vector3(0.962036, 1, 1)
+material = SubResource("StandardMaterial3D_xiydh")
+
+[node name="CSGBox3D16" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.98883, 1.00113, 15.8693)
+visible = false
+size = Vector3(1.26569, 1, 1)
+material = SubResource("StandardMaterial3D_xiydh")
+
+[node name="CSGBox3D17" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.94886, 1.00113, 15.8693)
+visible = false
+size = Vector3(1.26569, 1, 1)
+material = SubResource("StandardMaterial3D_xiydh")
+
+[node name="CSGBox3D18" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.94886, 1.95685, 15.8693)
+visible = false
+size = Vector3(1.26569, 1, 1)
+material = SubResource("StandardMaterial3D_xiydh")
+
+[node name="CSGBox3D19" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.94886, 2.97922, 15.8693)
+visible = false
+size = Vector3(1.26569, 1, 1)
+material = SubResource("StandardMaterial3D_xiydh")
+
+[node name="CSGBox3D20" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.94886, 3.889, 15.8693)
+visible = false
+size = Vector3(1.26569, 1, 1)
+material = SubResource("StandardMaterial3D_xiydh")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-0.91123, 0.122811, -0.393163, -0.0618731, 0.902873, 0.425431, 0.407225, 0.411992, -0.815126, -2.11603, 4.32507, -8.37545)
+
+[node name="wood" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.27759, 0.0370415, -11.5243)
+size = Vector3(4.01123, 1, 4.21851)
+material = SubResource("StandardMaterial3D_24hqa")
+
+[node name="Label3D" type="Label3D" parent="wood"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.72072, 0)
+billboard = 2
+text = "wood"
+
+[node name="wood2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.503262, 0.0370415, -11.5243)
+size = Vector3(4.01123, 1, 4.21851)
+material = SubResource("StandardMaterial3D_nuvim")
+
+[node name="Label3D" type="Label3D" parent="wood2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.72072, 0)
+billboard = 2
+text = "metal
+"
+
+[node name="WoodPlace" parent="." instance=ExtResource("7_w2or7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.22681, 0.5, -11.6109)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WoodPlace"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0520935, -0.238403, -0.0231018)
+shape = SubResource("BoxShape3D_1gxbc")
 
 [connection signal="pressed" from="MainMenu/VBoxContainer/Host-button" to="." method="_on_hostbutton_pressed"]
 [connection signal="pressed" from="MainMenu/VBoxContainer/Join-button" to="." method="_on_joinbutton_pressed"]

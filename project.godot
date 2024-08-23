@@ -25,6 +25,10 @@ folder_colors={
 "res://textures/": "green"
 }
 
+[global_group]
+
+WOOD=""
+
 [input]
 
 forward={
@@ -80,6 +84,7 @@ run={
 3d_physics/layer_2="enviroment"
 3d_physics/layer_3="enemy"
 3d_physics/layer_4="usable"
+3d_physics/layer_5="place"
 
 [physics]
 
