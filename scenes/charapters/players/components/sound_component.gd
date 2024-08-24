@@ -9,9 +9,11 @@ extends Node
 
 var play_cd = false
 
-func checkplace():
-	if place_collider.is_colliding():
-		play_sound(0, 0.5)
+func checkplace(time : float):
+	if place_collider.is_colliding() and place_collider.get_collider().is_in_group("WOOD"):
+		play_sound(0, time)
+	elif place_collider.is_colliding() and place_collider.get_collider().is_in_group("METALL"):
+		play_sound(1, time)
 			
 func play_sound(sound_id : int, time : float):
 	if !play_cd:

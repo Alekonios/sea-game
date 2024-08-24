@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=4 uid="uid://bj73pp6ds87xp"]
+[gd_scene load_steps=50 format=4 uid="uid://bj73pp6ds87xp"]
 
 [ext_resource type="Script" path="res://scenes/charapters/players/charapter_movement.gd" id="1_o3ocm"]
 [ext_resource type="Script" path="res://scenes/charapters/players/components/state_macine.gd" id="2_xfakk"]
@@ -10,6 +10,10 @@
 [ext_resource type="Script" path="res://scenes/charapters/players/components/sound_component.gd" id="7_x7p56"]
 [ext_resource type="AudioStream" uid="uid://dvi8obo5mfjso" path="res://sounds/Move_sounds/move_wood/3edc1efc346c39f_Edf5FQgr.mp3" id="8_psnm8"]
 [ext_resource type="AudioStream" uid="uid://bvdfktm07s5v" path="res://sounds/Move_sounds/move_wood/3edc1efc346c39f_pGuTxHY3.mp3" id="9_5g713"]
+[ext_resource type="AudioStream" uid="uid://lyn46qhve5wi" path="res://sounds/Move_sounds/move_metall/6b87fc128ead4ed.mp3" id="11_7ltx0"]
+[ext_resource type="AudioStream" uid="uid://dstakvtte72d4" path="res://sounds/Move_sounds/move_metall/13b85c71066cbcc.mp3" id="12_84we8"]
+[ext_resource type="AudioStream" uid="uid://chrgtfl672g5e" path="res://sounds/Move_sounds/move_metall/65dacc623f13dc6.mp3" id="13_osw1q"]
+[ext_resource type="AudioStream" uid="uid://cbljbp2yufcsy" path="res://e5d2699a95b104a.mp3" id="14_oigwa"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dey2m"]
 resource_name = "Material.006"
@@ -891,6 +895,13 @@ stream_0/stream = ExtResource("7_08ii7")
 stream_1/stream = ExtResource("8_psnm8")
 stream_2/stream = ExtResource("9_5g713")
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_1sosn"]
+streams_count = 4
+stream_0/stream = ExtResource("11_7ltx0")
+stream_1/stream = ExtResource("12_84we8")
+stream_2/stream = ExtResource("13_osw1q")
+stream_3/stream = ExtResource("14_oigwa")
+
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_s043l"]
 properties/0/path = NodePath(".:position")
 properties/0/spawn = true
@@ -903,10 +914,13 @@ properties/2/spawn = true
 properties/2/replication_mode = 1
 properties/3/path = NodePath("Sounds/Move-Wood:playing")
 properties/3/spawn = true
-properties/3/replication_mode = 1
+properties/3/replication_mode = 2
 properties/4/path = NodePath("Shroom_main_5/AnimationPlayer:current_animation")
 properties/4/spawn = true
 properties/4/replication_mode = 1
+properties/5/path = NodePath("Sounds/Move-Metall:playing")
+properties/5/spawn = true
+properties/5/replication_mode = 2
 
 [node name="Charapter" type="CharacterBody3D" node_paths=PackedStringArray("_SoundComponent", "_StateMacine", "camera", "camera_cur")]
 collision_mask = 6
@@ -1125,17 +1139,21 @@ script = ExtResource("6_fbng2")
 
 [node name="SoundComponent" type="Node" parent="components" node_paths=PackedStringArray("move_sounds")]
 script = ExtResource("7_x7p56")
-move_sounds = [NodePath("../../Sounds/Move-Wood")]
+move_sounds = [NodePath("../../Sounds/Move-Wood"), NodePath("../../Sounds/Move-Metall")]
 
 [node name="Sounds" type="Node3D" parent="."]
 
 [node name="Move-Wood" type="AudioStreamPlayer3D" parent="Sounds"]
 stream = SubResource("AudioStreamRandomizer_nsk4f")
-doppler_tracking = 2
+doppler_tracking = 1
+
+[node name="Move-Metall" type="AudioStreamPlayer3D" parent="Sounds"]
+stream = SubResource("AudioStreamRandomizer_1sosn")
+doppler_tracking = 1
 
 [node name="RayCast3D" type="RayCast3D" parent="Sounds"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0563297, 0)
-target_position = Vector3(0, -0.49, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00650258, 0)
+target_position = Vector3(0, -0.135, 0)
 collision_mask = 16
 hit_from_inside = true
 collide_with_areas = true

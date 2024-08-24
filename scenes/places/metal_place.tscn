@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://becbj6c7rd3lu"]
+
+[node name="MetallPlace" type="Area3D" groups=["METALL"]]
+collision_layer = 16
+collision_mask = 0

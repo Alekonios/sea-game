@@ -53,11 +53,11 @@ func _physics_process(delta: float) -> void:
 		if run:
 			SPEED = 6.0
 			_StateMacine.state = _StateMacine.States.Run
-			_SoundComponent.checkplace()
+			_SoundComponent.checkplace(0.2)
 		else:
 			SPEED = 3.0
 			_StateMacine.state = _StateMacine.States.Walk
-			_SoundComponent.checkplace()
+			_SoundComponent.checkplace(0.35)
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
