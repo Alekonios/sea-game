@@ -10,6 +10,8 @@ extends RigidBody3D
 @onready var water = get_node('/root/Node3D/Water')
 @onready var probes = $ProbeContainer.get_children()
 
+@onready var pos
+
 var SPEED = 0.0
 var stoped = false
 
@@ -20,6 +22,7 @@ enum States {Idle, Swim}
 var submerged := false
 
 func _physics_process(delta):
+	
 	submerged = false
 	for p in probes:
 		var depth = water.get_height(p.global_position) - p.global_position.y 
