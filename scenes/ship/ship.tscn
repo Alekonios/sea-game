@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bjxikdxrndls"]
+[gd_scene load_steps=10 format=3 uid="uid://bjxikdxrndls"]
 
 [ext_resource type="Texture2D" uid="uid://dikf5a8h2q6uu" path="res://addons/kenney_prototype_textures/orange/texture_01.png" id="1_s8645"]
 [ext_resource type="Script" path="res://scenes/ship/ship.gd" id="1_vpity"]
@@ -18,14 +18,6 @@ albedo_texture = ExtResource("3_xarph")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_t6mur"]
 size = Vector3(1, 2.69635, 1)
-
-[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_7b0mh"]
-properties/0/path = NodePath(".:rotation")
-properties/0/spawn = true
-properties/0/replication_mode = 2
-properties/1/path = NodePath(".:position")
-properties/1/spawn = true
-properties/1/replication_mode = 2
 
 [node name="SHIP" type="RigidBody3D"]
 collision_layer = 6
@@ -130,7 +122,3 @@ Usable_Object = NodePath("..")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Components/piston/Hitbox"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.91542, 0.848175, 0.694769)
 shape = SubResource("BoxShape3D_t6mur")
-
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
-replication_config = SubResource("SceneReplicationConfig_7b0mh")
-visibility_update_mode = 1

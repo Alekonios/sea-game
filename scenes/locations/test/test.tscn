@@ -421,11 +421,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.22681, 0.5, -11.6109)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0520935, -0.238403, -0.0231018)
 shape = SubResource("BoxShape3D_1gxbc")
 
-[node name="SHIP" parent="." instance=ExtResource("9_mx2ih")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.5199, 3.5738, 8.12585)
-
 [node name="Water" parent="." instance=ExtResource("10_420im")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.89988, -4.52279, 1.44853)
+
+[node name="Node3D3" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.0792, 1.95124, 0)
+
+[node name="SHIP" parent="." instance=ExtResource("9_mx2ih")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.0436, 0, -6.81699)
 
 [connection signal="pressed" from="MainMenu/VBoxContainer/Host-button" to="." method="_on_hostbutton_pressed"]
 [connection signal="pressed" from="MainMenu/VBoxContainer/Join-button" to="." method="_on_joinbutton_pressed"]
