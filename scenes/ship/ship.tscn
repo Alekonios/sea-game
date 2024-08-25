@@ -1,0 +1,138 @@
+[gd_scene load_steps=11 format=3 uid="uid://bjxikdxrndls"]
+
+[ext_resource type="Texture2D" uid="uid://dikf5a8h2q6uu" path="res://addons/kenney_prototype_textures/orange/texture_01.png" id="1_s8645"]
+[ext_resource type="Script" path="res://scenes/ship/ship.gd" id="1_vpity"]
+[ext_resource type="Script" path="res://scenes/ship/piston_component.gd" id="3_ln05w"]
+[ext_resource type="Texture2D" uid="uid://cdupdty3m1x67" path="res://addons/kenney_prototype_textures/red/texture_01.png" id="3_xarph"]
+[ext_resource type="Script" path="res://scenes/components/hitbox_component.gd" id="5_mmi3y"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qwfyk"]
+size = Vector3(8.81317, 1.06689, 14.452)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3fulu"]
+albedo_texture = ExtResource("1_s8645")
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ix4pt"]
+albedo_texture = ExtResource("3_xarph")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_t6mur"]
+size = Vector3(1, 2.69635, 1)
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_7b0mh"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+
+[node name="SHIP" type="RigidBody3D"]
+collision_layer = 4
+collision_mask = 6
+script = ExtResource("1_vpity")
+
+[node name="ProbeContainer" type="Node3D" parent="."]
+
+[node name="Marker3D" type="Marker3D" parent="ProbeContainer"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.90328, 0, -4.15632)
+
+[node name="Marker3D2" type="Marker3D" parent="ProbeContainer"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.903, 0, -4.156)
+
+[node name="Marker3D3" type="Marker3D" parent="ProbeContainer"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.90328, 0, 0.15885)
+
+[node name="Marker3D4" type="Marker3D" parent="ProbeContainer"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.903, 0, 0.159171)
+
+[node name="Marker3D5" type="Marker3D" parent="ProbeContainer"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.90328, 0, 4.13407)
+
+[node name="Marker3D6" type="Marker3D" parent="ProbeContainer"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.903, 0, 4.13439)
+
+[node name="Marker3D7" type="Marker3D" parent="ProbeContainer"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.90328, 0, 7.08273)
+
+[node name="Marker3D8" type="Marker3D" parent="ProbeContainer"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.903, 0, 7.08305)
+
+[node name="Marker3D9" type="Marker3D" parent="ProbeContainer"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.90328, 0, 10.0868)
+
+[node name="Marker3D10" type="Marker3D" parent="ProbeContainer"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.903, 0, 10.0871)
+
+[node name="Marker3D11" type="Marker3D" parent="ProbeContainer"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.90328, 0, 10.0868)
+
+[node name="Marker3D12" type="Marker3D" parent="ProbeContainer"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.903, 0, 10.0871)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0302429, 2.07443, 3.01007)
+shape = SubResource("BoxShape3D_qwfyk")
+
+[node name="CSG" type="Node3D" parent="."]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSG"]
+transform = Transform3D(0.724954, 0.688798, 0, -0.688798, 0.724954, 0, 0, 0, 1, -2.2, 0, 3.0344)
+size = Vector3(5.14636, 1, 14.3785)
+material = SubResource("StandardMaterial3D_3fulu")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="CSG"]
+transform = Transform3D(0.725374, -0.688355, 0, 0.688355, 0.725374, 0, 0, 0, 1, 2.2, 0, 3.00394)
+size = Vector3(5.14636, 1, 14.3176)
+material = SubResource("StandardMaterial3D_3fulu")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="CSG"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0106047, 2.09876, 3.02737)
+size = Vector3(8.78781, 1, 14.3945)
+material = SubResource("StandardMaterial3D_3fulu")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="CSG"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0716974, 4.47433, 3.07262)
+size = Vector3(5.60601, 3.75964, 7.34808)
+material = SubResource("StandardMaterial3D_3fulu")
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="CSG/CSGBox3D4"]
+transform = Transform3D(0.943997, 0, 0, 0, 0.943997, 0, 0, 0, 0.943997, 0, -0.207561, -0.213882)
+operation = 2
+size = Vector3(5.60601, 3.75964, 8.38182)
+material = SubResource("StandardMaterial3D_3fulu")
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="CSG"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.142668, 3.41908, 1.86441)
+size = Vector3(0.398987, 1.88867, 0.289124)
+
+[node name="CSGTorus3D" type="CSGTorus3D" parent="CSG/CSGBox3D5"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.418378, 0.217818)
+
+[node name="Components" type="Node3D" parent="."]
+
+[node name="piston" type="Node3D" parent="Components" node_paths=PackedStringArray("ship")]
+script = ExtResource("3_ln05w")
+ship = NodePath("../..")
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="Components/piston"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.34082, 3.14076, 1.86441)
+size = Vector3(0.398987, 1.33203, 0.289124)
+material = SubResource("StandardMaterial3D_ix4pt")
+
+[node name="Hitbox" type="Area3D" parent="Components/piston" node_paths=PackedStringArray("Usable_Object")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.473711, 1.77819, 1.04917)
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("5_mmi3y")
+Usable_Object = NodePath("..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Components/piston/Hitbox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.91542, 0.848175, 0.694769)
+shape = SubResource("BoxShape3D_t6mur")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_7b0mh")
+
+[node name="Marker3D" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -7.99989)

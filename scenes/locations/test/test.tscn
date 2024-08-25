@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://bfg8v58buqo5s"]
+[gd_scene load_steps=30 format=3 uid="uid://bfg8v58buqo5s"]
 
 [ext_resource type="Script" path="res://scenes/locations/test/test.gd" id="1_qwl7r"]
 [ext_resource type="Texture2D" uid="uid://cd2cwywywf70u" path="res://addons/kenney_prototype_textures/dark/texture_01.png" id="2_16wt7"]
@@ -8,6 +8,8 @@
 [ext_resource type="Script" path="res://scenes/locations/test/lb.gd" id="5_jqn8k"]
 [ext_resource type="PackedScene" uid="uid://becbj6c7rd3lu" path="res://scenes/places/metal_place.tscn" id="7_5a1xu"]
 [ext_resource type="PackedScene" uid="uid://cp3gje0nkhous" path="res://scenes/places/wood_place.tscn" id="7_w2or7"]
+[ext_resource type="PackedScene" uid="uid://bjxikdxrndls" path="res://scenes/ship/ship.tscn" id="9_mx2ih"]
+[ext_resource type="PackedScene" uid="uid://bmfem11qgdr16" path="res://scenes/other/water.tscn" id="10_420im"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rmd7l"]
 albedo_texture = ExtResource("2_16wt7")
@@ -22,8 +24,6 @@ sky_material = SubResource("PhysicalSkyMaterial_8d0og")
 [sub_resource type="Environment" id="Environment_t45qn"]
 background_mode = 2
 sky = SubResource("Sky_bek2k")
-ambient_light_sky_contribution = 0.0
-ssao_enabled = true
 volumetric_fog_enabled = true
 volumetric_fog_anisotropy = 0.25
 volumetric_fog_length = 1.0
@@ -193,10 +193,6 @@ layout_mode = 2
 placeholder_text = "Host IP"
 alignment = 1
 
-[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
-_spawnable_scenes = PackedStringArray("res://scenes/charapters/players/Charapter.tscn")
-spawn_path = NodePath("../Node3D2")
-
 [node name="Node3D" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.76929, 0)
 
@@ -308,6 +304,22 @@ collision_mask = 2
 size = Vector3(0.929016, 0.247559, 1)
 material = SubResource("StandardMaterial3D_50l5o")
 
+[node name="CSGBox3D21" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.04868, 5.26371, 10.43)
+use_collision = true
+collision_layer = 2
+collision_mask = 2
+size = Vector3(0.929016, 0.247559, 1)
+material = SubResource("StandardMaterial3D_50l5o")
+
+[node name="CSGBox3D22" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.34606, 5.94067, 10.43)
+use_collision = true
+collision_layer = 2
+collision_mask = 2
+size = Vector3(0.929016, 0.247559, 1)
+material = SubResource("StandardMaterial3D_50l5o")
+
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_egmdi")
 
@@ -408,6 +420,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.22681, 0.5, -11.6109)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="WoodPlace"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0520935, -0.238403, -0.0231018)
 shape = SubResource("BoxShape3D_1gxbc")
+
+[node name="SHIP" parent="." instance=ExtResource("9_mx2ih")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.5199, 3.5738, 8.12585)
+
+[node name="Water" parent="." instance=ExtResource("10_420im")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.89988, -4.52279, 1.44853)
 
 [connection signal="pressed" from="MainMenu/VBoxContainer/Host-button" to="." method="_on_hostbutton_pressed"]
 [connection signal="pressed" from="MainMenu/VBoxContainer/Join-button" to="." method="_on_joinbutton_pressed"]

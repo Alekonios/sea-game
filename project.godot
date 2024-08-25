@@ -29,6 +29,7 @@ folder_colors={
 
 WOOD=""
 METALL=""
+PLAYER=""
 
 [input]
 

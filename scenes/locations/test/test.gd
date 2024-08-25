@@ -6,7 +6,7 @@ extends Node
 var enet_peer = ENetMultiplayerPeer.new()
 
 const Player = preload("res://scenes/charapters/players/Charapter.tscn")
-const PORT = 9999
+const PORT = 1200
 
 func add_player(peer_id):
 	var player = Player.instantiate()
@@ -34,3 +34,4 @@ func _on_joinbutton_pressed() -> void:
 	multiplayer.multiplayer_peer = enet_peer
 	multiplayer.peer_connected.connect(add_player)
 	add_player(multiplayer.get_unique_id())
+	

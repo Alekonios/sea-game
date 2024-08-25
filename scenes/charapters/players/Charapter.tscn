@@ -13,7 +13,6 @@
 [ext_resource type="AudioStream" uid="uid://lyn46qhve5wi" path="res://sounds/Move_sounds/move_metall/6b87fc128ead4ed.mp3" id="11_7ltx0"]
 [ext_resource type="AudioStream" uid="uid://dstakvtte72d4" path="res://sounds/Move_sounds/move_metall/13b85c71066cbcc.mp3" id="12_84we8"]
 [ext_resource type="AudioStream" uid="uid://chrgtfl672g5e" path="res://sounds/Move_sounds/move_metall/65dacc623f13dc6.mp3" id="13_osw1q"]
-[ext_resource type="AudioStream" uid="uid://cbljbp2yufcsy" path="res://e5d2699a95b104a.mp3" id="14_oigwa"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dey2m"]
 resource_name = "Material.006"
@@ -896,33 +895,34 @@ stream_1/stream = ExtResource("8_psnm8")
 stream_2/stream = ExtResource("9_5g713")
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_1sosn"]
-streams_count = 4
+streams_count = 3
 stream_0/stream = ExtResource("11_7ltx0")
 stream_1/stream = ExtResource("12_84we8")
 stream_2/stream = ExtResource("13_osw1q")
-stream_3/stream = ExtResource("14_oigwa")
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_s043l"]
+properties/0/path = NodePath("camera_node:rotation")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath("Sounds/Move-Wood:playing")
+properties/1/spawn = true
+properties/1/replication_mode = 2
+properties/2/path = NodePath("Shroom_main_5/AnimationPlayer:current_animation")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+properties/3/path = NodePath("Sounds/Move-Metall:playing")
+properties/3/spawn = true
+properties/3/replication_mode = 2
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_qup7r"]
 properties/0/path = NodePath(".:position")
 properties/0/spawn = true
 properties/0/replication_mode = 1
 properties/1/path = NodePath(".:rotation")
 properties/1/spawn = true
 properties/1/replication_mode = 1
-properties/2/path = NodePath("camera_node:rotation")
-properties/2/spawn = true
-properties/2/replication_mode = 1
-properties/3/path = NodePath("Sounds/Move-Wood:playing")
-properties/3/spawn = true
-properties/3/replication_mode = 2
-properties/4/path = NodePath("Shroom_main_5/AnimationPlayer:current_animation")
-properties/4/spawn = true
-properties/4/replication_mode = 1
-properties/5/path = NodePath("Sounds/Move-Metall:playing")
-properties/5/spawn = true
-properties/5/replication_mode = 2
 
-[node name="Charapter" type="CharacterBody3D" node_paths=PackedStringArray("_SoundComponent", "_StateMacine", "camera", "camera_cur")]
+[node name="Charapter" type="CharacterBody3D" node_paths=PackedStringArray("_SoundComponent", "_StateMacine", "camera", "camera_cur") groups=["PLAYER"]]
 collision_mask = 6
 floor_max_angle = 1.39626
 script = ExtResource("1_o3ocm")
@@ -1160,3 +1160,6 @@ collide_with_areas = true
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_s043l")
+
+[node name="MultiplayerSynchronizer2" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_qup7r")

@@ -32,7 +32,7 @@ fractal_octaves = 3
 seamless = true
 noise = SubResource("FastNoiseLite_jbi1g")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_0n3y0"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_apcs0"]
 render_priority = 0
 shader = ExtResource("1_d436h")
 shader_parameter/albedo = Color(0, 0.321569, 0.431373, 1)
@@ -40,17 +40,17 @@ shader_parameter/albedo2 = Color(0, 0.47451, 0.764706, 1)
 shader_parameter/color_deep = Color(0.105882, 0.294118, 0.329412, 1)
 shader_parameter/color_shallow = Color(0, 0.552941, 0.65098, 1)
 shader_parameter/metallic = 1.0
-shader_parameter/roughness = 0.0
+shader_parameter/roughness = 0.02
 shader_parameter/wave_time = 0.0
 shader_parameter/wave_direction = Vector2(2, 0)
 shader_parameter/wave_2_direction = Vector2(0, 1)
 shader_parameter/time_scale = 0.025
-shader_parameter/wave_speed = 2.0
+shader_parameter/wave_speed = 0.2
 shader_parameter/noise_scale = 10.0
-shader_parameter/height_scale = 0.15
-shader_parameter/beers_law = 2.0
-shader_parameter/depth_offset = 0.605
-shader_parameter/edge_scale = 4.195
+shader_parameter/height_scale = 2.0
+shader_parameter/beers_law = 0.089
+shader_parameter/depth_offset = -0.75
+shader_parameter/edge_scale = 0.362
 shader_parameter/near = 0.5
 shader_parameter/far = 100.0
 shader_parameter/edge_color = Color(1, 1, 1, 1)
@@ -59,7 +59,7 @@ shader_parameter/texture_normal2 = SubResource("NoiseTexture2D_u5h0n")
 shader_parameter/wave = SubResource("NoiseTexture2D_7k2l2")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_0xwda"]
-material = SubResource("ShaderMaterial_0n3y0")
+material = SubResource("ShaderMaterial_apcs0")
 size = Vector2(500, 500)
 subdivide_width = 500
 subdivide_depth = 500
@@ -67,6 +67,3 @@ subdivide_depth = 500
 [node name="Water" type="MeshInstance3D"]
 mesh = SubResource("PlaneMesh_0xwda")
 script = ExtResource("2_gun66")
-
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(-0.00181098, 0.9693, 0.245876, -0.00713912, -0.245883, 0.969273, 0.999973, -3.4923e-10, 0.00736524, 0.239358, 2.49631, 0)
