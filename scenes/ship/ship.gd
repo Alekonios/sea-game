@@ -22,9 +22,8 @@ enum States {Idle, Swim}
 var submerged := false
 
 func _physics_process(delta):
-	moving.rpc()
+	moving()
 	
-@rpc("any_peer", "call_local")
 func moving():
 	submerged = false
 	for p in probes:
@@ -45,18 +44,7 @@ func moving():
 		linear_velocity.x = forward_direction.x * SPEED 
 		linear_velocity.z = forward_direction.z * SPEED
 		
-	
-	
-	
-
-
-
 func _integrate_forces(state: PhysicsDirectBodyState3D):
-	sync_water.rpc(state)
-		
-		
-@rpc("any_peer", "call_local")
-func sync_water(state: PhysicsDirectBodyState3D):
 	if submerged:
 		state.linear_velocity *=  1 - water_drag
 		state.angular_velocity *= 1 - water_angular_drag 

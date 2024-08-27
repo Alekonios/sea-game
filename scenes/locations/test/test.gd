@@ -20,7 +20,7 @@ func remove_player(peer_id):
 
 func _on_hostbutton_pressed():
 	main_menu.hide()
-	enet_peer.create_server(PORT, 1)
+	enet_peer.create_server(PORT, 2)
 	multiplayer.multiplayer_peer = enet_peer
 	multiplayer.peer_connected.connect(add_player)
 	multiplayer.peer_disconnected.connect(remove_player)

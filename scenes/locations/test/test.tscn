@@ -1,8 +1,9 @@
-[gd_scene load_steps=30 format=3 uid="uid://bfg8v58buqo5s"]
+[gd_scene load_steps=29 format=3 uid="uid://bfg8v58buqo5s"]
 
 [ext_resource type="Script" path="res://scenes/locations/test/test.gd" id="1_qwl7r"]
 [ext_resource type="Texture2D" uid="uid://cd2cwywywf70u" path="res://addons/kenney_prototype_textures/dark/texture_01.png" id="2_16wt7"]
 [ext_resource type="Texture2D" uid="uid://c7o1wi2w5rlu0" path="res://addons/kenney_prototype_textures/dark/texture_05.png" id="3_adnmp"]
+[ext_resource type="Script" path="res://scenes/locations/test/platform.gd" id="3_nn7u0"]
 [ext_resource type="Texture2D" uid="uid://dikf5a8h2q6uu" path="res://addons/kenney_prototype_textures/orange/texture_01.png" id="4_dyjvv"]
 [ext_resource type="Script" path="res://scenes/components/hitbox_component.gd" id="5_bpwuu"]
 [ext_resource type="Script" path="res://scenes/locations/test/lb.gd" id="5_jqn8k"]
@@ -33,71 +34,34 @@ volumetric_fog_sky_affect = 0.105
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_crhid"]
 
-[sub_resource type="Animation" id="Animation_fey2n"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("MeshInstance3D:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0.858651, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_kyc8k"]
-resource_name = "sd"
-loop_mode = 2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("MeshInstance3D:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.4, 1),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 0.858651, 0), Vector3(0, 0.858651, 0), Vector3(0, 5.71232, 0)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_1ttlr"]
-_data = {
-"RESET": SubResource("Animation_fey2n"),
-"sd": SubResource("Animation_kyc8k")
-}
+[sub_resource type="BoxShape3D" id="BoxShape3D_ujse0"]
+size = Vector3(1, 2.51318, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_50l5o"]
 albedo_texture = ExtResource("3_adnmp")
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_egmdi"]
-properties/0/path = NodePath("MeshInstance3D:position")
+properties/0/path = NodePath("Label3D:text")
 properties/0/spawn = true
 properties/0/replication_mode = 1
-properties/1/path = NodePath("Label3D:text")
+properties/1/path = NodePath("CSGBox3D15:visible")
 properties/1/spawn = true
 properties/1/replication_mode = 1
-properties/2/path = NodePath("CSGBox3D15:visible")
+properties/2/path = NodePath("CSGBox3D16:visible")
 properties/2/spawn = true
 properties/2/replication_mode = 1
-properties/3/path = NodePath("CSGBox3D16:visible")
+properties/3/path = NodePath("CSGBox3D17:visible")
 properties/3/spawn = true
 properties/3/replication_mode = 1
-properties/4/path = NodePath("CSGBox3D17:visible")
+properties/4/path = NodePath("CSGBox3D18:visible")
 properties/4/spawn = true
 properties/4/replication_mode = 1
-properties/5/path = NodePath("CSGBox3D18:visible")
+properties/5/path = NodePath("CSGBox3D19:visible")
 properties/5/spawn = true
 properties/5/replication_mode = 1
-properties/6/path = NodePath("CSGBox3D19:visible")
+properties/6/path = NodePath("CSGBox3D20:visible")
 properties/6/spawn = true
 properties/6/replication_mode = 1
-properties/7/path = NodePath("CSGBox3D20:visible")
-properties/7/spawn = true
-properties/7/replication_mode = 1
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5nlxr"]
 albedo_texture = ExtResource("4_dyjvv")
@@ -199,22 +163,23 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.76929, 0)
 [node name="Node3D2" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11.9199, 0)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="platform" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.140215, 0, 0, 0, 1, 0, 0.858651, 0)
 mesh = SubResource("BoxMesh_3n2h3")
+script = ExtResource("3_nn7u0")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+[node name="StaticBody3D" type="StaticBody3D" parent="platform"]
 collision_layer = 2
 collision_mask = 2
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="platform/StaticBody3D"]
 shape = SubResource("BoxShape3D_crhid")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_1ttlr")
-}
-autoplay = "sd"
+[node name="Area3D" type="Area3D" parent="platform"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="platform/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.756592, 0)
+shape = SubResource("BoxShape3D_ujse0")
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.29114, 0.522027, 0)
@@ -430,5 +395,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.0792, 1.95124, 0)
 [node name="SHIP" parent="." instance=ExtResource("9_mx2ih")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.0436, 0, -6.81699)
 
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://scenes/charapters/players/Charapter.tscn", "res://scenes/ship/ship.tscn")
+spawn_path = NodePath("../Node")
+
+[node name="Node" type="Node" parent="."]
+
 [connection signal="pressed" from="MainMenu/VBoxContainer/Host-button" to="." method="_on_hostbutton_pressed"]
 [connection signal="pressed" from="MainMenu/VBoxContainer/Join-button" to="." method="_on_joinbutton_pressed"]
+[connection signal="body_entered" from="platform/Area3D" to="platform" method="_on_area_3d_body_entered"]

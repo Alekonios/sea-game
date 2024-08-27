@@ -7,7 +7,7 @@ var count = 0
 func activation():
 	activation_.rpc()
 
-@rpc("any_peer", "call_local")
+@rpc("any_peer", "call_local", "reliable")
 func activation_():
 	if !is_multiplayer_authority(): return
 	$"../Label3D".text = str(count)

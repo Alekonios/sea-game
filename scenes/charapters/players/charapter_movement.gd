@@ -2,7 +2,6 @@ class_name Movement
 
 extends CharacterBody3D
 
-
 var SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 
@@ -18,6 +17,7 @@ var run = false
 @export var camera_cur = Camera3D
 
 @onready var player_meshes = [$Shroom_main_5/Armature_001/Cube_003, $Shroom_main_5/Armature_001/Skeleton3D/Cube_001, $Shroom_main_5/Armature_001/Skeleton3D/Cube_002, $Shroom_main_5/Armature_001/Skeleton3D/Cube_005, $Shroom_main_5/Armature_001/Skeleton3D/Cube_006, $Shroom_main_5/Armature_001/Skeleton3D/Cube_007, $Shroom_main_5/Armature_001/Skeleton3D/Cube_008, $Shroom_main_5/Armature_001/Skeleton3D/Cube_009, $Shroom_main_5/Armature_001/Skeleton3D/Cube_199]
+@onready var sync = $CoolSync
 
 func _enter_tree() -> void:
 	set_multiplayer_authority(str(name).to_int())
@@ -46,7 +46,7 @@ func _physics_process(delta: float) -> void:
 
 	var input_dir := Input.get_vector("left", "right", "forward", "back")
 	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	if direction:
+	if direction and !block:
 		velocity.x = lerp(velocity.x, direction.x * SPEED, delta * 10)
 		velocity.z = lerp(velocity.z, direction.z * SPEED, delta * 10)
 		if run:
@@ -57,12 +57,13 @@ func _physics_process(delta: float) -> void:
 			SPEED = 3.0
 			_StateMacine.state = _StateMacine.States.Walk
 			_SoundComponent.checkplace(0.35)
-	else:
+	elif !direction and !block:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 		_StateMacine.state = _StateMacine.States.Idle
 
 	move_and_slide()
+
 	
 func _input(event):
 	if not is_multiplayer_authority(): return

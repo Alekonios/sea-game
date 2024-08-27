@@ -1,10 +1,13 @@
-[gd_scene load_steps=10 format=3 uid="uid://bjxikdxrndls"]
+[gd_scene load_steps=17 format=3 uid="uid://bjxikdxrndls"]
 
 [ext_resource type="Texture2D" uid="uid://dikf5a8h2q6uu" path="res://addons/kenney_prototype_textures/orange/texture_01.png" id="1_s8645"]
 [ext_resource type="Script" path="res://scenes/ship/ship.gd" id="1_vpity"]
 [ext_resource type="Script" path="res://scenes/ship/piston_component.gd" id="3_ln05w"]
 [ext_resource type="Texture2D" uid="uid://cdupdty3m1x67" path="res://addons/kenney_prototype_textures/red/texture_01.png" id="3_xarph"]
 [ext_resource type="Script" path="res://scenes/components/hitbox_component.gd" id="5_mmi3y"]
+[ext_resource type="Texture2D" uid="uid://dgxt0p2qehqv5" path="res://addons/kenney_prototype_textures/green/texture_01.png" id="6_a6aos"]
+[ext_resource type="Script" path="res://scenes/ship/steering_wheel.gd" id="6_xnqwm"]
+[ext_resource type="PackedScene" uid="uid://dg2lh07mitpxh" path="res://scenes/components/hitbox_component.tscn" id="8_m8egb"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qwfyk"]
 size = Vector3(8.81317, 1.06689, 14.452)
@@ -18,6 +21,30 @@ albedo_texture = ExtResource("3_xarph")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_t6mur"]
 size = Vector3(1, 2.69635, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2h8uf"]
+albedo_texture = ExtResource("6_a6aos")
+uv1_triplanar = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_euhuv"]
+size = Vector3(1.99149, 1.99652, 0.651596)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yss1o"]
+size = Vector3(1.50439, 2.27551, 1.76123)
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_3ovcn"]
+properties/0/path = NodePath(".:linear_velocity")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:angular_velocity")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath(".:position")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+properties/3/path = NodePath(".:rotation")
+properties/3/spawn = true
+properties/3/replication_mode = 1
 
 [node name="SHIP" type="RigidBody3D"]
 collision_layer = 6
@@ -94,13 +121,6 @@ operation = 2
 size = Vector3(5.60601, 3.75964, 8.38182)
 material = SubResource("StandardMaterial3D_3fulu")
 
-[node name="CSGBox3D5" type="CSGBox3D" parent="CSG"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.142668, 3.41908, 1.86441)
-size = Vector3(0.398987, 1.88867, 0.289124)
-
-[node name="CSGTorus3D" type="CSGTorus3D" parent="CSG/CSGBox3D5"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.418378, 0.217818)
-
 [node name="Components" type="Node3D" parent="."]
 
 [node name="piston" type="Node3D" parent="Components" node_paths=PackedStringArray("ship")]
@@ -122,3 +142,36 @@ Usable_Object = NodePath("..")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Components/piston/Hitbox"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.91542, 0.848175, 0.694769)
 shape = SubResource("BoxShape3D_t6mur")
+
+[node name="steering wheel" type="Node3D" parent="Components"]
+script = ExtResource("6_xnqwm")
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="Components/steering wheel"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.142668, 3.41908, 1.86441)
+size = Vector3(0.398987, 1.88867, 0.289124)
+
+[node name="CSGTorus3D" type="CSGTorus3D" parent="Components/steering wheel/CSGBox3D5"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.418378, 0.217818)
+material = SubResource("StandardMaterial3D_2h8uf")
+
+[node name="Hitbox" parent="Components/steering wheel" node_paths=PackedStringArray("Usable_Object") instance=ExtResource("8_m8egb")]
+Usable_Object = NodePath("..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Components/steering wheel/Hitbox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.159629, 3.85854, 2.23792)
+shape = SubResource("BoxShape3D_euhuv")
+
+[node name="Camera3D" type="Camera3D" parent="Components/steering wheel"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.33422, 4.08902)
+
+[node name="shturval_collision" type="Area3D" parent="Components/steering wheel"]
+collision_layer = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Components/steering wheel/shturval_collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.137451, 3.60451, 2.88655)
+shape = SubResource("BoxShape3D_yss1o")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_3ovcn")
+
+[connection signal="area_entered" from="Components/steering wheel/shturval_collision" to="Components/steering wheel" method="_on_shturval_collision_area_entered"]

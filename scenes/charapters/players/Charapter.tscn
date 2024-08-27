@@ -816,6 +816,38 @@ _data = {
 "Walk": SubResource("Animation_6nlk3")
 }
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_nsk4f"]
+streams_count = 3
+stream_0/stream = ExtResource("7_08ii7")
+stream_1/stream = ExtResource("8_psnm8")
+stream_2/stream = ExtResource("9_5g713")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_1sosn"]
+streams_count = 3
+stream_0/stream = ExtResource("11_7ltx0")
+stream_1/stream = ExtResource("12_84we8")
+stream_2/stream = ExtResource("13_osw1q")
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_s043l"]
+properties/0/path = NodePath("camera_node:rotation")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath("Sounds/Move-Wood:playing")
+properties/1/spawn = true
+properties/1/replication_mode = 2
+properties/2/path = NodePath("Shroom_main_5/AnimationPlayer:current_animation")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+properties/3/path = NodePath("Sounds/Move-Metall:playing")
+properties/3/spawn = true
+properties/3/replication_mode = 2
+properties/4/path = NodePath(".:position")
+properties/4/spawn = true
+properties/4/replication_mode = 1
+properties/5/path = NodePath(".:rotation")
+properties/5/spawn = true
+properties/5/replication_mode = 1
+
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_m6r0o"]
 
 [sub_resource type="Animation" id="Animation_ivw06"]
@@ -888,39 +920,8 @@ _data = {
 "walk": SubResource("Animation_ythle")
 }
 
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_nsk4f"]
-streams_count = 3
-stream_0/stream = ExtResource("7_08ii7")
-stream_1/stream = ExtResource("8_psnm8")
-stream_2/stream = ExtResource("9_5g713")
-
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_1sosn"]
-streams_count = 3
-stream_0/stream = ExtResource("11_7ltx0")
-stream_1/stream = ExtResource("12_84we8")
-stream_2/stream = ExtResource("13_osw1q")
-
-[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_s043l"]
-properties/0/path = NodePath("camera_node:rotation")
-properties/0/spawn = true
-properties/0/replication_mode = 1
-properties/1/path = NodePath("Sounds/Move-Wood:playing")
-properties/1/spawn = true
-properties/1/replication_mode = 2
-properties/2/path = NodePath("Shroom_main_5/AnimationPlayer:current_animation")
-properties/2/spawn = true
-properties/2/replication_mode = 1
-properties/3/path = NodePath("Sounds/Move-Metall:playing")
-properties/3/spawn = true
-properties/3/replication_mode = 2
-
-[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_qup7r"]
-properties/0/path = NodePath(".:position")
-properties/0/spawn = true
-properties/0/replication_mode = 1
-properties/1/path = NodePath(".:rotation")
-properties/1/spawn = true
-properties/1/replication_mode = 1
+[sub_resource type="BoxShape3D" id="BoxShape3D_h4dbe"]
+size = Vector3(2.04938, 3.53076, 1.43079)
 
 [node name="Charapter" type="CharacterBody3D" node_paths=PackedStringArray("_SoundComponent", "_StateMacine", "camera", "camera_cur") groups=["PLAYER"]]
 collision_mask = 6
@@ -930,6 +931,41 @@ _SoundComponent = NodePath("components/SoundComponent")
 _StateMacine = NodePath("components/StateMacine")
 camera = NodePath("camera_node")
 camera_cur = NodePath("camera_node/Camera3D")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="pimka" type="Label" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="use" type="Label" parent="CanvasLayer"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = 108.0
+offset_right = 20.0
+offset_bottom = 131.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "use"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Shroom_main_5" type="Node3D" parent="."]
 transform = Transform3D(5.08383, 0, 0, 0, 5.08383, 0, 0, 0, 5.08383, 0, 0, 0)
@@ -1101,10 +1137,6 @@ libraries = {
 }
 playback_default_blend_time = 0.2
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-shape = SubResource("CapsuleShape3D_m6r0o")
-
 [node name="camera_node" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.57333, 0)
 
@@ -1120,26 +1152,6 @@ collide_with_areas = true
 
 [node name="Marker3D" type="Marker3D" parent="camera_node/Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 0.987264, -0.159089, 0, 0.159089, 0.987264, 0, 0, 0)
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_e7728")
-}
-playback_default_blend_time = 0.2
-
-[node name="components" type="Node" parent="."]
-
-[node name="StateMacine" type="Node" parent="components" node_paths=PackedStringArray("move")]
-script = ExtResource("2_xfakk")
-move = NodePath("../..")
-state = 3
-
-[node name="IntercationComponent" type="Node" parent="components"]
-script = ExtResource("6_fbng2")
-
-[node name="SoundComponent" type="Node" parent="components" node_paths=PackedStringArray("move_sounds")]
-script = ExtResource("7_x7p56")
-move_sounds = [NodePath("../../Sounds/Move-Wood"), NodePath("../../Sounds/Move-Metall")]
 
 [node name="Sounds" type="Node3D" parent="."]
 
@@ -1158,8 +1170,36 @@ collision_mask = 16
 hit_from_inside = true
 collide_with_areas = true
 
+[node name="components" type="Node" parent="."]
+
+[node name="StateMacine" type="Node" parent="components" node_paths=PackedStringArray("move")]
+script = ExtResource("2_xfakk")
+move = NodePath("../..")
+state = 3
+
+[node name="IntercationComponent" type="Node" parent="components"]
+script = ExtResource("6_fbng2")
+
+[node name="SoundComponent" type="Node" parent="components" node_paths=PackedStringArray("move_sounds")]
+script = ExtResource("7_x7p56")
+move_sounds = [NodePath("../../Sounds/Move-Wood"), NodePath("../../Sounds/Move-Metall")]
+
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_s043l")
 
-[node name="MultiplayerSynchronizer2" type="MultiplayerSynchronizer" parent="."]
-replication_config = SubResource("SceneReplicationConfig_qup7r")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_m6r0o")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_e7728")
+}
+playback_default_blend_time = 0.2
+
+[node name="Hitbox" type="Area3D" parent="."]
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0691833, 1.26538, -0.0722046)
+shape = SubResource("BoxShape3D_h4dbe")
