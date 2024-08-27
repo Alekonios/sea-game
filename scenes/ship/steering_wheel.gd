@@ -14,10 +14,15 @@ func _on_shturval_collision_area_entered(area: Area3D) -> void:
 	want_activation = true
 	
 func activation():
-	_activation()
+	var a = multiplayer.get_unique_id()
+	_activation.rpc(a)
+		
+		
 
-func _activation():
+@rpc("any_peer", "reliable", "call_local")
+func _activation(a):
 	if want_activation and !have_order:
 		have_order = true
-		camera.current = true
-		player.block = true
+		if multiplayer.get_unique_id() == a:
+			camera.current = true
+			player.block = true

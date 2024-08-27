@@ -10,6 +10,9 @@ var mouse_sens = 0.1
 
 var run = false
 
+@export var target_position : Vector3
+@export var target_rotation : Vector3
+
 @export var _SoundComponent : SoundComponent
 @export var _StateMacine : StateMacine
 
@@ -17,7 +20,6 @@ var run = false
 @export var camera_cur = Camera3D
 
 @onready var player_meshes = [$Shroom_main_5/Armature_001/Cube_003, $Shroom_main_5/Armature_001/Skeleton3D/Cube_001, $Shroom_main_5/Armature_001/Skeleton3D/Cube_002, $Shroom_main_5/Armature_001/Skeleton3D/Cube_005, $Shroom_main_5/Armature_001/Skeleton3D/Cube_006, $Shroom_main_5/Armature_001/Skeleton3D/Cube_007, $Shroom_main_5/Armature_001/Skeleton3D/Cube_008, $Shroom_main_5/Armature_001/Skeleton3D/Cube_009, $Shroom_main_5/Armature_001/Skeleton3D/Cube_199]
-@onready var sync = $CoolSync
 
 func _enter_tree() -> void:
 	set_multiplayer_authority(str(name).to_int())
@@ -31,6 +33,14 @@ func _ready() -> void:
 	camera_cur.current = is_multiplayer_authority()
 
 func _physics_process(delta: float) -> void:
+	
+	if is_multiplayer_authority():
+		target_position = global_position
+		target_rotation = global_rotation
+	else:
+		global_position = global_position.lerp(target_position, delta * 15)
+		global_rotation.y = lerp_angle(global_rotation.y, target_rotation.y, delta * 15)
+	
 	if !is_multiplayer_authority(): return
 	
 	if not is_on_floor():

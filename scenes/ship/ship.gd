@@ -1,6 +1,8 @@
 class_name SHIP
 
 extends RigidBody3D
+@export var target_position : Vector3
+@export var target_rotation : Vector3
 
 @export var float_force := 1.0
 @export var water_drag := 0.05
@@ -23,6 +25,14 @@ var submerged := false
 
 func _physics_process(delta):
 	moving()
+	if multiplayer.is_server():
+		target_position = global_position
+		target_rotation = global_rotation
+	else:
+		global_position = global_position.lerp(target_position, delta * 15)
+		global_rotation = global_rotation.lerp(target_rotation, delta * 15)
+		
+	
 	
 func moving():
 	submerged = false
