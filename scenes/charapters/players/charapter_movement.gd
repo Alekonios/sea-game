@@ -10,6 +10,8 @@ var mouse_sens = 0.1
 
 var run = false
 
+var ship_speed_z = 0.0
+
 @export var target_position : Vector3
 @export var target_rotation : Vector3
 

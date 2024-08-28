@@ -12,6 +12,8 @@ extends RigidBody3D
 @onready var water = get_node('/root/Node3D/Water')
 @onready var probes = $ProbeContainer.get_children()
 
+var player = false
+
 @onready var pos
 
 var SPEED = 0.0
@@ -54,8 +56,13 @@ func moving():
 		linear_velocity.x = forward_direction.x * SPEED 
 		linear_velocity.z = forward_direction.z * SPEED
 		
+		
 func _integrate_forces(state: PhysicsDirectBodyState3D):
 	if submerged:
 		state.linear_velocity *=  1 - water_drag
 		state.angular_velocity *= 1 - water_angular_drag 
 	
+
+func _on_apply_vel_player_area_entered(area: Area3D) -> void:
+	
+	player = area.get_parent()
