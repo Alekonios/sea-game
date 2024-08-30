@@ -33,28 +33,36 @@ size = Vector3(1.99149, 1.99652, 0.651596)
 size = Vector3(1.50439, 2.27551, 1.76123)
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_3ovcn"]
-properties/0/path = NodePath(".:target_rotation")
+properties/0/path = NodePath(".:target_position")
 properties/0/spawn = true
 properties/0/replication_mode = 1
-properties/1/path = NodePath(".:target_position")
+properties/1/path = NodePath(".:angular_velocity")
 properties/1/spawn = true
 properties/1/replication_mode = 1
-properties/2/path = NodePath(".:angular_velocity")
+properties/2/path = NodePath(".:linear_velocity")
 properties/2/spawn = true
 properties/2/replication_mode = 1
-properties/3/path = NodePath(".:linear_velocity")
+properties/3/path = NodePath(".:target_rotation_y")
 properties/3/spawn = true
 properties/3/replication_mode = 1
+properties/4/path = NodePath(".:target_rotation_x")
+properties/4/spawn = true
+properties/4/replication_mode = 1
+properties/5/path = NodePath(".:target_rotation_z")
+properties/5/spawn = true
+properties/5/replication_mode = 1
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vc7is"]
 size = Vector3(9.68854, 3.16309, 14.5098)
 
 [node name="SHIP" type="RigidBody3D"]
-collision_layer = 6
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+collision_layer = 2
 collision_mask = 6
 script = ExtResource("1_vpity")
 
 [node name="ProbeContainer" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.08507)
 
 [node name="Marker3D" type="Marker3D" parent="ProbeContainer"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.90328, 0, -4.15632)
@@ -93,10 +101,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.90328, 0, 10.0868)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.903, 0, 10.0871)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0302429, 2.07443, 3.01007)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0302429, 2.07443, -0.0749966)
 shape = SubResource("BoxShape3D_qwfyk")
 
 [node name="CSG" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.08507)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="CSG"]
 transform = Transform3D(0.724954, 0.688798, 0, -0.688798, 0.724954, 0, 0, 0, 1, -2.2, 0, 3.0344)
@@ -125,6 +134,7 @@ size = Vector3(5.60601, 3.75964, 8.38182)
 material = SubResource("StandardMaterial3D_3fulu")
 
 [node name="Components" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.08507)
 
 [node name="piston" type="Node3D" parent="Components" node_paths=PackedStringArray("ship")]
 script = ExtResource("3_ln05w")
@@ -146,8 +156,9 @@ Usable_Object = NodePath("..")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.91542, 0.848175, 0.694769)
 shape = SubResource("BoxShape3D_t6mur")
 
-[node name="steering wheel" type="Node3D" parent="Components"]
+[node name="steering wheel" type="Node3D" parent="Components" node_paths=PackedStringArray("ship")]
 script = ExtResource("6_xnqwm")
+ship = NodePath("../..")
 
 [node name="CSGBox3D5" type="CSGBox3D" parent="Components/steering wheel"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.142668, 3.41908, 1.86441)
@@ -178,6 +189,7 @@ shape = SubResource("BoxShape3D_yss1o")
 replication_config = SubResource("SceneReplicationConfig_3ovcn")
 
 [node name="Apply vel player" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.08507)
 collision_layer = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Apply vel player"]

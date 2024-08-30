@@ -3,6 +3,7 @@ extends MeshInstance3D
 var ahj = false
 
 func _process(delta: float) -> void:
+	if !is_multiplayer_authority(): return
 	up_down.rpc()
 	
 @rpc("any_peer", "call_local", "reliable")

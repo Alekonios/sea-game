@@ -926,7 +926,7 @@ size = Vector3(2.04938, 3.53076, 1.43079)
 [node name="Charapter" type="CharacterBody3D" node_paths=PackedStringArray("_SoundComponent", "_StateMacine", "camera", "camera_cur") groups=["PLAYER"]]
 collision_mask = 6
 floor_max_angle = 1.39626
-platform_on_leave = 2
+platform_on_leave = 1
 script = ExtResource("1_o3ocm")
 _SoundComponent = NodePath("components/SoundComponent")
 _StateMacine = NodePath("components/StateMacine")
