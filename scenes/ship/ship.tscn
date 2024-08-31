@@ -1,16 +1,22 @@
-[gd_scene load_steps=18 format=3 uid="uid://bjxikdxrndls"]
+[gd_scene load_steps=20 format=3 uid="uid://bjxikdxrndls"]
 
 [ext_resource type="Texture2D" uid="uid://dikf5a8h2q6uu" path="res://addons/kenney_prototype_textures/orange/texture_01.png" id="1_s8645"]
 [ext_resource type="Script" path="res://scenes/ship/ship.gd" id="1_vpity"]
 [ext_resource type="Script" path="res://scenes/ship/piston_component.gd" id="3_ln05w"]
 [ext_resource type="Texture2D" uid="uid://cdupdty3m1x67" path="res://addons/kenney_prototype_textures/red/texture_01.png" id="3_xarph"]
-[ext_resource type="Script" path="res://scenes/components/hitbox_component.gd" id="5_mmi3y"]
+[ext_resource type="Script" path="res://addons/hitbox_component.gd" id="5_mmi3y"]
 [ext_resource type="Texture2D" uid="uid://dgxt0p2qehqv5" path="res://addons/kenney_prototype_textures/green/texture_01.png" id="6_a6aos"]
 [ext_resource type="Script" path="res://scenes/ship/steering_wheel.gd" id="6_xnqwm"]
 [ext_resource type="PackedScene" uid="uid://dg2lh07mitpxh" path="res://scenes/components/hitbox_component.tscn" id="8_m8egb"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qwfyk"]
 size = Vector3(8.81317, 1.06689, 14.452)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7a05m"]
+size = Vector3(5.59188, 0.320129, 7.34251)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4v1pb"]
+size = Vector3(0.139934, 3.75913, 7.34251)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3fulu"]
 albedo_texture = ExtResource("1_s8645")
@@ -51,14 +57,17 @@ properties/4/replication_mode = 1
 properties/5/path = NodePath(".:target_rotation_z")
 properties/5/spawn = true
 properties/5/replication_mode = 1
+properties/6/path = NodePath(".:targer_angular_velocity")
+properties/6/spawn = true
+properties/6/replication_mode = 1
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vc7is"]
 size = Vector3(9.68854, 3.16309, 14.5098)
 
 [node name="SHIP" type="RigidBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 collision_layer = 2
 collision_mask = 6
+linear_damp_mode = 1
 script = ExtResource("1_vpity")
 
 [node name="ProbeContainer" type="Node3D" parent="."]
@@ -103,6 +112,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.903, 0, 10.0871)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0302429, 2.07443, -0.0749966)
 shape = SubResource("BoxShape3D_qwfyk")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0624347, 6.19697, -0.0212101)
+shape = SubResource("BoxShape3D_7a05m")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.78841, 4.47747, -0.0212101)
+shape = SubResource("BoxShape3D_4v1pb")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.6512, 4.47747, -0.0212101)
+shape = SubResource("BoxShape3D_4v1pb")
 
 [node name="CSG" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.08507)

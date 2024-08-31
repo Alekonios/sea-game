@@ -1,11 +1,11 @@
-[gd_scene load_steps=29 format=3 uid="uid://bfg8v58buqo5s"]
+[gd_scene load_steps=32 format=3 uid="uid://bfg8v58buqo5s"]
 
 [ext_resource type="Script" path="res://scenes/locations/test/test.gd" id="1_qwl7r"]
 [ext_resource type="Texture2D" uid="uid://cd2cwywywf70u" path="res://addons/kenney_prototype_textures/dark/texture_01.png" id="2_16wt7"]
 [ext_resource type="Texture2D" uid="uid://c7o1wi2w5rlu0" path="res://addons/kenney_prototype_textures/dark/texture_05.png" id="3_adnmp"]
 [ext_resource type="Script" path="res://scenes/locations/test/platform.gd" id="3_nn7u0"]
 [ext_resource type="Texture2D" uid="uid://dikf5a8h2q6uu" path="res://addons/kenney_prototype_textures/orange/texture_01.png" id="4_dyjvv"]
-[ext_resource type="Script" path="res://scenes/components/hitbox_component.gd" id="5_bpwuu"]
+[ext_resource type="Script" path="res://addons/hitbox_component.gd" id="5_bpwuu"]
 [ext_resource type="Script" path="res://scenes/locations/test/lb.gd" id="5_jqn8k"]
 [ext_resource type="PackedScene" uid="uid://becbj6c7rd3lu" path="res://scenes/places/metal_place.tscn" id="7_5a1xu"]
 [ext_resource type="PackedScene" uid="uid://cp3gje0nkhous" path="res://scenes/places/wood_place.tscn" id="7_w2or7"]
@@ -94,6 +94,13 @@ size = Vector3(4.0376, 1.00366, 4.25092)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1gxbc"]
 size = Vector3(4.05621, 0.523193, 4.4859)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_e1pe4"]
+bounce = 0.23
+
+[sub_resource type="BoxMesh" id="BoxMesh_ym6r1"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_apjrl"]
 
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_qwl7r")
@@ -394,12 +401,32 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.0792, 1.95124, 0)
 
 [node name="SHIP" parent="." instance=ExtResource("9_mx2ih")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.0436, 0, -6.81699)
+target_position = Vector3(0, 0, 0)
+target_rotation_y = Vector3(0, 0, 0)
+target_rotation_x = Vector3(0, 0, 0)
+target_rotation_z = Vector3(0, 0, 0)
+float_force = 1.0
+water_drag = 0.05
+water_angular_drag = 0.05
+state = 0
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
 _spawnable_scenes = PackedStringArray("res://scenes/charapters/players/Charapter.tscn", "res://scenes/ship/ship.tscn")
 spawn_path = NodePath("../Node")
 
 [node name="Node" type="Node" parent="."]
+
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.03857, -3.96638)
+collision_layer = 2
+collision_mask = 7
+physics_material_override = SubResource("PhysicsMaterial_e1pe4")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D"]
+mesh = SubResource("BoxMesh_ym6r1")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+shape = SubResource("BoxShape3D_apjrl")
 
 [connection signal="pressed" from="MainMenu/VBoxContainer/Host-button" to="." method="_on_hostbutton_pressed"]
 [connection signal="pressed" from="MainMenu/VBoxContainer/Join-button" to="." method="_on_joinbutton_pressed"]

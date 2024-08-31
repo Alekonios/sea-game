@@ -5,6 +5,7 @@ extends RigidBody3D
 @export var target_rotation_y : Vector3
 @export var target_rotation_x : Vector3
 @export var target_rotation_z : Vector3
+@export var targer_angular_velocity : Vector3
 
 
 @export var float_force := 1.0
@@ -31,12 +32,14 @@ var submerged := false
 func sync(delta):
 	if multiplayer.is_server():
 		target_position = global_position
+		targer_angular_velocity = angular_velocity
 		target_rotation_y = global_rotation
 		target_rotation_x = global_rotation
 		target_rotation_z = global_rotation
 		
 	else:
 		global_position = global_position.lerp(target_position, delta * 15)
+		angular_velocity.y = lerp_angle(angular_velocity.y, targer_angular_velocity.y, delta * 15)
 		global_rotation.y = lerp_angle(global_rotation.y, target_rotation_y.y, delta * 15)
 		global_rotation.x = lerp_angle(global_rotation.x, target_rotation_x.x, delta * 15)
 		global_rotation.z = lerp_angle(global_rotation.z, target_rotation_z.z, delta * 15)
@@ -48,7 +51,6 @@ func _physics_process(delta):
 	forward_direction = forward_direction.normalized()
 	linear_velocity.x = forward_direction.x * SPEED * delta * 50
 	linear_velocity.z = forward_direction.z * SPEED * delta * 50
-	print(linear_velocity)
 	
 	
 

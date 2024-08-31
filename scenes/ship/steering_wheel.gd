@@ -48,13 +48,13 @@ func management(delta):
 			none.rpc(delta)
 @rpc("any_peer", "reliable", "call_local")
 func right(delta):
-	rotate_speed = lerp(rotate_speed, 0.01, 0.2)
-	ship.global_rotation.y -= rotate_speed
+	rotate_speed = lerp(rotate_speed, 1.0, 0.2)
+	ship.angular_velocity.y = -rotate_speed
 	
 @rpc("any_peer", "reliable", "call_local")
 func left(delta):
-	rotate_speed = lerp(rotate_speed, 0.01, 0.2)
-	ship.global_rotation.y += rotate_speed
+	rotate_speed = lerp(rotate_speed, 1.0, 0.2)
+	ship.angular_velocity.y = rotate_speed
 
 @rpc("any_peer", "reliable", "call_local")
 func none(delta):
