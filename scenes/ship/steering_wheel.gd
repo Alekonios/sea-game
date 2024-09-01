@@ -37,6 +37,25 @@ func _activation(a):
 			
 func _process(delta: float) -> void:
 	management(delta)
+	if Input.is_action_just_pressed("back_ui"):
+		back_r()
+
+func back_r():
+	back.rpc()
+
+@rpc("any_peer", "reliable", "call_local")
+func back():
+		if have_order:
+			have_order = false
+			if multiplayer.get_unique_id() == order_player:
+				player.block = false
+				player.not_block()
+				want_activation = true
+				order_player = null
+				print("sdasd")
+			
+		
+
 
 func management(delta):
 	if multiplayer.get_unique_id() == order_player and ship.state == ship.States.Swim:
@@ -48,14 +67,14 @@ func management(delta):
 			none.rpc(delta)
 @rpc("any_peer", "reliable", "call_local")
 func right(delta):
-	rotate_speed = lerp(rotate_speed, 1.0, 0.2)
-	ship.angular_velocity.y = -rotate_speed
+	rotate_speed = lerp(rotate_speed, 0.2, 0.01)
+	ship.angular_velocity.y = rotate_speed
 	
 @rpc("any_peer", "reliable", "call_local")
 func left(delta):
-	rotate_speed = lerp(rotate_speed, 1.0, 0.2)
+	rotate_speed = lerp(rotate_speed, -0.2, 0.01)
 	ship.angular_velocity.y = rotate_speed
 
 @rpc("any_peer", "reliable", "call_local")
 func none(delta):
-	rotate_speed = lerp(rotate_speed, 0.0, 0.2)
+	rotate_speed = lerp(rotate_speed, 0.0, 0.01)

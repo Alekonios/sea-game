@@ -40,7 +40,7 @@ func _physics_process(delta: float) -> void:
 		target_position = global_position
 		target_rotation = global_rotation
 	else:
-		global_position = global_position.lerp(target_position, delta * 15)
+		global_position = global_position.lerp(target_position, delta * 8)
 		global_rotation.y = lerp_angle(global_rotation.y, target_rotation.y, delta * 15)
 	
 	if !is_multiplayer_authority(): return
@@ -59,8 +59,8 @@ func _physics_process(delta: float) -> void:
 	var input_dir := Input.get_vector("left", "right", "forward", "back")
 	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if direction and !block:
-		velocity.x = lerp(velocity.x, direction.x * SPEED, delta * 10)
-		velocity.z = lerp(velocity.z, direction.z * SPEED, delta * 10)
+		velocity.x = direction.x * SPEED * delta * 50
+		velocity.z = direction.z * SPEED * delta * 50
 		if run:
 			SPEED = 6.0
 			_StateMacine.state = _StateMacine.States.Run
@@ -76,6 +76,9 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 
+	
+func not_block():
+	camera_cur.current = is_multiplayer_authority()
 	
 func _input(event):
 	if not is_multiplayer_authority(): return

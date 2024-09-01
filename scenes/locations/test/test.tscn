@@ -1,16 +1,15 @@
-[gd_scene load_steps=32 format=3 uid="uid://bfg8v58buqo5s"]
+[gd_scene load_steps=35 format=3 uid="uid://bfg8v58buqo5s"]
 
 [ext_resource type="Script" path="res://scenes/locations/test/test.gd" id="1_qwl7r"]
 [ext_resource type="Texture2D" uid="uid://cd2cwywywf70u" path="res://addons/kenney_prototype_textures/dark/texture_01.png" id="2_16wt7"]
 [ext_resource type="Texture2D" uid="uid://c7o1wi2w5rlu0" path="res://addons/kenney_prototype_textures/dark/texture_05.png" id="3_adnmp"]
-[ext_resource type="Script" path="res://scenes/locations/test/platform.gd" id="3_nn7u0"]
 [ext_resource type="Texture2D" uid="uid://dikf5a8h2q6uu" path="res://addons/kenney_prototype_textures/orange/texture_01.png" id="4_dyjvv"]
 [ext_resource type="Script" path="res://addons/hitbox_component.gd" id="5_bpwuu"]
 [ext_resource type="Script" path="res://scenes/locations/test/lb.gd" id="5_jqn8k"]
 [ext_resource type="PackedScene" uid="uid://becbj6c7rd3lu" path="res://scenes/places/metal_place.tscn" id="7_5a1xu"]
-[ext_resource type="PackedScene" uid="uid://cp3gje0nkhous" path="res://scenes/places/wood_place.tscn" id="7_w2or7"]
 [ext_resource type="PackedScene" uid="uid://bjxikdxrndls" path="res://scenes/ship/ship.tscn" id="9_mx2ih"]
-[ext_resource type="PackedScene" uid="uid://bmfem11qgdr16" path="res://scenes/other/water.tscn" id="10_420im"]
+[ext_resource type="Shader" path="res://shaders/water.gdshader" id="10_bjltn"]
+[ext_resource type="Script" path="res://scenes/other/Water.gd" id="11_c2prg"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rmd7l"]
 albedo_texture = ExtResource("2_16wt7")
@@ -25,17 +24,12 @@ sky_material = SubResource("PhysicalSkyMaterial_8d0og")
 [sub_resource type="Environment" id="Environment_t45qn"]
 background_mode = 2
 sky = SubResource("Sky_bek2k")
-volumetric_fog_enabled = true
-volumetric_fog_anisotropy = 0.25
-volumetric_fog_length = 1.0
-volumetric_fog_sky_affect = 0.105
-
-[sub_resource type="BoxMesh" id="BoxMesh_3n2h3"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_crhid"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_ujse0"]
-size = Vector3(1, 2.51318, 1)
+fog_sky_affect = 0.284
+volumetric_fog_density = 0.01
+volumetric_fog_length = 5.0
+volumetric_fog_sky_affect = 0.0
+adjustment_contrast = 1.1
+adjustment_saturation = 1.59
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_50l5o"]
 albedo_texture = ExtResource("3_adnmp")
@@ -92,8 +86,66 @@ roughness = 0.31
 [sub_resource type="BoxShape3D" id="BoxShape3D_32ll3"]
 size = Vector3(4.0376, 1.00366, 4.25092)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_1gxbc"]
-size = Vector3(4.05621, 0.523193, 4.4859)
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_hy6fq"]
+fractal_type = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_brvoh"]
+seamless = true
+as_normal_map = true
+bump_strength = 1.5
+noise = SubResource("FastNoiseLite_hy6fq")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_hs2gb"]
+noise_type = 3
+fractal_type = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_u5h0n"]
+seamless = true
+as_normal_map = true
+bump_strength = 1.5
+noise = SubResource("FastNoiseLite_hs2gb")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_jbi1g"]
+noise_type = 3
+frequency = 0.001
+fractal_type = 2
+fractal_octaves = 3
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_7k2l2"]
+seamless = true
+noise = SubResource("FastNoiseLite_jbi1g")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_apcs0"]
+render_priority = 0
+shader = ExtResource("10_bjltn")
+shader_parameter/albedo = Color(0, 0.321569, 0.431373, 1)
+shader_parameter/albedo2 = Color(0, 0.47451, 0.764706, 1)
+shader_parameter/color_deep = Color(0.105882, 0.294118, 0.329412, 1)
+shader_parameter/color_shallow = Color(0, 0.552941, 0.65098, 1)
+shader_parameter/metallic = 1.0
+shader_parameter/roughness = 0.02
+shader_parameter/wave_time = 0.0
+shader_parameter/wave_direction = Vector2(2, 0)
+shader_parameter/wave_2_direction = Vector2(0, 1)
+shader_parameter/time_scale = 0.025
+shader_parameter/wave_speed = 0.2
+shader_parameter/noise_scale = 10.0
+shader_parameter/height_scale = 0.685
+shader_parameter/beers_law = 0.089
+shader_parameter/depth_offset = -0.75
+shader_parameter/edge_scale = 0.362
+shader_parameter/near = 0.5
+shader_parameter/far = 100.0
+shader_parameter/edge_color = Color(0.858824, 1, 1, 1)
+shader_parameter/texture_normal = SubResource("NoiseTexture2D_brvoh")
+shader_parameter/texture_normal2 = SubResource("NoiseTexture2D_u5h0n")
+shader_parameter/wave = SubResource("NoiseTexture2D_7k2l2")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_0xwda"]
+material = SubResource("ShaderMaterial_apcs0")
+size = Vector2(500, 500)
+subdivide_width = 500
+subdivide_depth = 500
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_e1pe4"]
 bounce = 0.23
@@ -169,24 +221,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.76929, 0)
 
 [node name="Node3D2" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11.9199, 0)
-
-[node name="platform" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.140215, 0, 0, 0, 1, 0, 0.858651, 0)
-mesh = SubResource("BoxMesh_3n2h3")
-script = ExtResource("3_nn7u0")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="platform"]
-collision_layer = 2
-collision_mask = 2
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="platform/StaticBody3D"]
-shape = SubResource("BoxShape3D_crhid")
-
-[node name="Area3D" type="Area3D" parent="platform"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="platform/Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.756592, 0)
-shape = SubResource("BoxShape3D_ujse0")
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.29114, 0.522027, 0)
@@ -386,29 +420,16 @@ text = "metal
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0429688, 0.00183105, 0.00430298)
 shape = SubResource("BoxShape3D_32ll3")
 
-[node name="WoodPlace" parent="." instance=ExtResource("7_w2or7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.22681, 0.5, -11.6109)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="WoodPlace"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0520935, -0.238403, -0.0231018)
-shape = SubResource("BoxShape3D_1gxbc")
-
-[node name="Water" parent="." instance=ExtResource("10_420im")]
+[node name="Water" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.89988, -4.52279, 1.44853)
+mesh = SubResource("PlaneMesh_0xwda")
+script = ExtResource("11_c2prg")
 
 [node name="Node3D3" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.0792, 1.95124, 0)
 
 [node name="SHIP" parent="." instance=ExtResource("9_mx2ih")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.0436, 0, -6.81699)
-target_position = Vector3(0, 0, 0)
-target_rotation_y = Vector3(0, 0, 0)
-target_rotation_x = Vector3(0, 0, 0)
-target_rotation_z = Vector3(0, 0, 0)
-float_force = 1.0
-water_drag = 0.05
-water_angular_drag = 0.05
-state = 0
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.0436, -3.17909, -6.81699)
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
 _spawnable_scenes = PackedStringArray("res://scenes/charapters/players/Charapter.tscn", "res://scenes/ship/ship.tscn")
@@ -430,4 +451,3 @@ shape = SubResource("BoxShape3D_apjrl")
 
 [connection signal="pressed" from="MainMenu/VBoxContainer/Host-button" to="." method="_on_hostbutton_pressed"]
 [connection signal="pressed" from="MainMenu/VBoxContainer/Join-button" to="." method="_on_joinbutton_pressed"]
-[connection signal="body_entered" from="platform/Area3D" to="platform" method="_on_area_3d_body_entered"]
