@@ -17,11 +17,14 @@ var ship_speed_z = 0.0
 
 @export var _SoundComponent : SoundComponent
 @export var _StateMacine : StateMacine
+@export var _InteractionComponent : InteractionComponent
 
 @export var camera : Node3D
 @export var camera_cur = Camera3D
 
 @onready var player_meshes = [$Shroom_main_5/Armature_001/Cube_003, $Shroom_main_5/Armature_001/Skeleton3D/Cube_001, $Shroom_main_5/Armature_001/Skeleton3D/Cube_002, $Shroom_main_5/Armature_001/Skeleton3D/Cube_005, $Shroom_main_5/Armature_001/Skeleton3D/Cube_006, $Shroom_main_5/Armature_001/Skeleton3D/Cube_007, $Shroom_main_5/Armature_001/Skeleton3D/Cube_008, $Shroom_main_5/Armature_001/Skeleton3D/Cube_009, $Shroom_main_5/Armature_001/Skeleton3D/Cube_199]
+
+signal interact
 
 func _enter_tree() -> void:
 	set_multiplayer_authority(str(name).to_int())
@@ -76,17 +79,25 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 
+
+func PENIS_VIS():
+	$PENIS.show()
+	
+func PENIS_HID():
+	$PENIS.hide()
 	
 func not_block():
+	print(multiplayer.get_unique_id())
 	camera_cur.current = is_multiplayer_authority()
 	
 func _input(event):
 	if not is_multiplayer_authority(): return
-	
 	if event is InputEventMouseMotion and !block:
 		rotate_y(deg_to_rad(-event.relative.x * mouse_sens))
 		camera.rotate_x(deg_to_rad(-event.relative.y * mouse_sens))
 		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-70), deg_to_rad(90))
+	if Input.is_action_just_pressed("test"):
+		emit_signal("interact")
 		
 func hide_ob():
 	if is_multiplayer_authority():

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bmfem11qgdr16"]
+[gd_scene load_steps=12 format=3 uid="uid://bmfem11qgdr16"]
 
 [ext_resource type="Shader" path="res://shaders/water.gdshader" id="1_d436h"]
 [ext_resource type="Script" path="res://scenes/other/Water.gd" id="2_gun66"]
@@ -64,6 +64,15 @@ size = Vector2(500, 500)
 subdivide_width = 500
 subdivide_depth = 500
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_d5e0i"]
+
 [node name="Water" type="MeshInstance3D"]
 mesh = SubResource("PlaneMesh_0xwda")
 script = ExtResource("2_gun66")
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_d5e0i")

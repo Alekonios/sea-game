@@ -1,8 +1,9 @@
-[gd_scene load_steps=35 format=3 uid="uid://bfg8v58buqo5s"]
+[gd_scene load_steps=39 format=3 uid="uid://bfg8v58buqo5s"]
 
 [ext_resource type="Script" path="res://scenes/locations/test/test.gd" id="1_qwl7r"]
 [ext_resource type="Texture2D" uid="uid://cd2cwywywf70u" path="res://addons/kenney_prototype_textures/dark/texture_01.png" id="2_16wt7"]
 [ext_resource type="Texture2D" uid="uid://c7o1wi2w5rlu0" path="res://addons/kenney_prototype_textures/dark/texture_05.png" id="3_adnmp"]
+[ext_resource type="Material" uid="uid://dh6ykun8bv60u" path="res://textures/tres/day_sky.tres" id="3_gw7a5"]
 [ext_resource type="Texture2D" uid="uid://dikf5a8h2q6uu" path="res://addons/kenney_prototype_textures/orange/texture_01.png" id="4_dyjvv"]
 [ext_resource type="Script" path="res://addons/hitbox_component.gd" id="5_bpwuu"]
 [ext_resource type="Script" path="res://scenes/locations/test/lb.gd" id="5_jqn8k"]
@@ -10,24 +11,27 @@
 [ext_resource type="PackedScene" uid="uid://bjxikdxrndls" path="res://scenes/ship/ship.tscn" id="9_mx2ih"]
 [ext_resource type="Shader" path="res://shaders/water.gdshader" id="10_bjltn"]
 [ext_resource type="Script" path="res://scenes/other/Water.gd" id="11_c2prg"]
+[ext_resource type="Script" path="res://scenes/locations/test/penis TETS.gd" id="11_wkggo"]
+[ext_resource type="PackedScene" uid="uid://b32lgqr6ri464" path="res://scenes/charapters/mobs/fish/peace/TEST_FISH.tscn" id="13_qa4ol"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rmd7l"]
 albedo_texture = ExtResource("2_16wt7")
 uv1_triplanar = true
 
-[sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_8d0og"]
-ground_color = Color(1, 1, 1, 1)
-
-[sub_resource type="Sky" id="Sky_bek2k"]
-sky_material = SubResource("PhysicalSkyMaterial_8d0og")
+[sub_resource type="Sky" id="Sky_t1ght"]
+sky_material = ExtResource("3_gw7a5")
 
 [sub_resource type="Environment" id="Environment_t45qn"]
 background_mode = 2
-sky = SubResource("Sky_bek2k")
+sky = SubResource("Sky_t1ght")
+ambient_light_sky_contribution = 0.24
+tonemap_mode = 3
+tonemap_exposure = 0.7
+tonemap_white = 0.66
+fog_mode = 1
+fog_density = 1.0
 fog_sky_affect = 0.284
-volumetric_fog_density = 0.01
-volumetric_fog_length = 5.0
-volumetric_fog_sky_affect = 0.0
+volumetric_fog_length = 1.0
 adjustment_contrast = 1.1
 adjustment_saturation = 1.59
 
@@ -118,11 +122,11 @@ noise = SubResource("FastNoiseLite_jbi1g")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_apcs0"]
 render_priority = 0
 shader = ExtResource("10_bjltn")
-shader_parameter/albedo = Color(0, 0.321569, 0.431373, 1)
-shader_parameter/albedo2 = Color(0, 0.47451, 0.764706, 1)
-shader_parameter/color_deep = Color(0.105882, 0.294118, 0.329412, 1)
-shader_parameter/color_shallow = Color(0, 0.552941, 0.65098, 1)
-shader_parameter/metallic = 1.0
+shader_parameter/albedo = Color(0, 0, 0, 1)
+shader_parameter/albedo2 = Color(0.492727, 0.690121, 0.721435, 1)
+shader_parameter/color_deep = Color(0.53524, 0.686283, 1, 1)
+shader_parameter/color_shallow = Color(0, 0, 0.517647, 1)
+shader_parameter/metallic = 0.747
 shader_parameter/roughness = 0.02
 shader_parameter/wave_time = 0.0
 shader_parameter/wave_direction = Vector2(2, 0)
@@ -130,13 +134,13 @@ shader_parameter/wave_2_direction = Vector2(0, 1)
 shader_parameter/time_scale = 0.025
 shader_parameter/wave_speed = 0.2
 shader_parameter/noise_scale = 10.0
-shader_parameter/height_scale = 0.685
-shader_parameter/beers_law = 0.089
+shader_parameter/height_scale = 1.205
+shader_parameter/beers_law = 1.05
 shader_parameter/depth_offset = -0.75
-shader_parameter/edge_scale = 0.362
+shader_parameter/edge_scale = 0.1
 shader_parameter/near = 0.5
 shader_parameter/far = 100.0
-shader_parameter/edge_color = Color(0.858824, 1, 1, 1)
+shader_parameter/edge_color = Color(0.43985, 0.813243, 1, 1)
 shader_parameter/texture_normal = SubResource("NoiseTexture2D_brvoh")
 shader_parameter/texture_normal2 = SubResource("NoiseTexture2D_u5h0n")
 shader_parameter/wave = SubResource("NoiseTexture2D_7k2l2")
@@ -154,6 +158,11 @@ bounce = 0.23
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_apjrl"]
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_i6rfr"]
+size = Vector3(5.15833, 3.04077, 3.95569)
+
+[sub_resource type="BoxMesh" id="BoxMesh_v6hyb"]
+
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_qwl7r")
 
@@ -166,7 +175,7 @@ size = Vector3(26.5087, 1, 35.53)
 material = SubResource("StandardMaterial3D_rmd7l")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="CSGBox3D"]
-transform = Transform3D(-0.720742, -0.5604, -0.408023, -0.683445, 0.476043, 0.553431, -0.115906, 0.677743, -0.726107, 0, 4.0013, 0)
+transform = Transform3D(-0.361867, -0.823253, -0.437386, -0.777961, 0.00817125, 0.628259, -0.513642, 0.567615, -0.643416, 0, 4.0013, 0)
 light_volumetric_fog_energy = 16.0
 shadow_enabled = true
 
@@ -449,5 +458,25 @@ mesh = SubResource("BoxMesh_ym6r1")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
 shape = SubResource("BoxShape3D_apjrl")
 
+[node name="Node3D4" type="Node3D" parent="."]
+script = ExtResource("11_wkggo")
+
+[node name="PENIS_AREA" type="Area3D" parent="Node3D4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.28938, 1.26921, 12.1768)
+collision_layer = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D4/PENIS_AREA"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.600647, 0.477905, 1.47784)
+shape = SubResource("BoxShape3D_i6rfr")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.54553, 0, 0, 0, 60.7235, 0, 0, 0, 1.54553, 0, 0, -201.296)
+mesh = SubResource("BoxMesh_v6hyb")
+
+[node name="test-fish" parent="." instance=ExtResource("13_qa4ol")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -36.4349, -5.61661, -12.3186)
+
 [connection signal="pressed" from="MainMenu/VBoxContainer/Host-button" to="." method="_on_hostbutton_pressed"]
 [connection signal="pressed" from="MainMenu/VBoxContainer/Join-button" to="." method="_on_joinbutton_pressed"]
+[connection signal="area_entered" from="Node3D4/PENIS_AREA" to="Node3D4" method="_on_penis_area_area_entered"]
+[connection signal="area_exited" from="Node3D4/PENIS_AREA" to="Node3D4" method="_on_penis_area_area_exited"]

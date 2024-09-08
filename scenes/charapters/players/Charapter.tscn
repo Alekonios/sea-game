@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=4 uid="uid://bj73pp6ds87xp"]
+[gd_scene load_steps=54 format=4 uid="uid://bj73pp6ds87xp"]
 
 [ext_resource type="Script" path="res://scenes/charapters/players/charapter_movement.gd" id="1_o3ocm"]
 [ext_resource type="Script" path="res://scenes/charapters/players/components/state_macine.gd" id="2_xfakk"]
@@ -923,13 +923,26 @@ _data = {
 [sub_resource type="BoxShape3D" id="BoxShape3D_h4dbe"]
 size = Vector3(2.04938, 3.53076, 1.43079)
 
-[node name="Charapter" type="CharacterBody3D" node_paths=PackedStringArray("_SoundComponent", "_StateMacine", "camera", "camera_cur") groups=["PLAYER"]]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3sglf"]
+albedo_color = Color(0.208434, 0.218097, 0.220416, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_y85kg"]
+material = SubResource("StandardMaterial3D_3sglf")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qfdx8"]
+albedo_color = Color(0.372549, 0.113725, 0.113725, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_bywj2"]
+material = SubResource("StandardMaterial3D_qfdx8")
+
+[node name="Charapter" type="CharacterBody3D" node_paths=PackedStringArray("_SoundComponent", "_StateMacine", "_InteractionComponent", "camera", "camera_cur") groups=["PLAYER"]]
 collision_mask = 6
 floor_max_angle = 1.39626
 platform_on_leave = 1
 script = ExtResource("1_o3ocm")
 _SoundComponent = NodePath("components/SoundComponent")
 _StateMacine = NodePath("components/StateMacine")
+_InteractionComponent = NodePath("components/IntercationComponent")
 camera = NodePath("camera_node")
 camera_cur = NodePath("camera_node/Camera3D")
 
@@ -1204,3 +1217,23 @@ collision_mask = 0
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0691833, 1.26538, -0.0722046)
 shape = SubResource("BoxShape3D_h4dbe")
+
+[node name="PENIS" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.582131, 0.147326)
+visible = false
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="PENIS"]
+transform = Transform3D(0.468615, 0, 0, 0, 0.468615, 0, 0, 0, 0.468615, 0.145799, 0, -0.650456)
+mesh = SubResource("SphereMesh_y85kg")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="PENIS"]
+transform = Transform3D(0.468615, 0, 0, 0, 0.468615, 0, 0, 0, 0.468615, -0.190263, 0, -0.650456)
+mesh = SubResource("SphereMesh_y85kg")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="PENIS"]
+transform = Transform3D(0.468615, 0, 0, 0, 0.468615, 0, 0, 0, 1.76128, 0.00551257, 0, -1.16338)
+mesh = SubResource("SphereMesh_y85kg")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="PENIS"]
+transform = Transform3D(0.599918, 0, 0, 0, 0.599918, 0, 0, 0, 0.623752, 0.00551257, 0, -1.96795)
+mesh = SubResource("SphereMesh_bywj2")

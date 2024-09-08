@@ -203,4 +203,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0801086, 3.64025, 3.38599)
 shape = SubResource("BoxShape3D_vc7is")
 
 [connection signal="area_entered" from="Components/steering wheel/shturval_collision" to="Components/steering wheel" method="_on_shturval_collision_area_entered"]
+[connection signal="area_exited" from="Components/steering wheel/shturval_collision" to="Components/steering wheel" method="_on_shturval_collision_area_exited"]
 [connection signal="area_entered" from="Apply vel player" to="." method="_on_apply_vel_player_area_entered"]
+[connection signal="area_exited" from="Apply vel player" to="Components/steering wheel" method="_on_apply_vel_player_area_exited"]
