@@ -43,7 +43,7 @@ func _physics_process(delta: float) -> void:
 		target_position = global_position
 		target_rotation = global_rotation
 	else:
-		global_position = global_position.lerp(target_position, delta * 8)
+		global_position = global_position.lerp(target_position, delta * 7)
 		global_rotation.y = lerp_angle(global_rotation.y, target_rotation.y, delta * 15)
 	
 	if !is_multiplayer_authority(): return

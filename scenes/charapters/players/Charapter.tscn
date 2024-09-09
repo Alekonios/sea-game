@@ -122,6 +122,7 @@ metallic = 1.0
 emission_enabled = true
 emission = Color(1, 1, 1, 1)
 emission_energy_multiplier = 4.3
+emission_intensity = 100000.0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_4joja"]
 resource_name = "Shroom_main_5_Cube_003"
