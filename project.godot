@@ -22,7 +22,7 @@ window/size/viewport_height=400
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/GPTIntegration/plugin.cfg")
+enabled=PackedStringArray()
 
 [file_customization]
 
@@ -110,3 +110,7 @@ test={
 [physics]
 
 common/physics_interpolation=true
+
+[rendering]
+
+lights_and_shadows/use_physical_light_units=true
