@@ -48,6 +48,8 @@ func _physics_process(delta: float) -> void:
 	
 	if !is_multiplayer_authority(): return
 	
+	$Label.text = str(Engine.get_frames_per_second())
+	
 	if not is_on_floor():
 		velocity += get_gravity() * 2 * delta
 

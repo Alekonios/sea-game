@@ -1237,3 +1237,7 @@ mesh = SubResource("SphereMesh_y85kg")
 [node name="MeshInstance3D4" type="MeshInstance3D" parent="PENIS"]
 transform = Transform3D(0.599918, 0, 0, 0, 0.599918, 0, 0, 0, 0.623752, 0.00551257, 0, -1.96795)
 mesh = SubResource("SphereMesh_bywj2")
+
+[node name="Label" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
