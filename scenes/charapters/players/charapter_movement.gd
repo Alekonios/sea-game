@@ -78,6 +78,10 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 		_StateMacine.state = _StateMacine.States.Idle
+		
+	elif block:
+		velocity.x = 0
+		velocity.z = 0
 
 	move_and_slide()
 

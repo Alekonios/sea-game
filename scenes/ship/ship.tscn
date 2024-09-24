@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bjxikdxrndls"]
+[gd_scene load_steps=21 format=3 uid="uid://bjxikdxrndls"]
 
 [ext_resource type="Texture2D" uid="uid://dikf5a8h2q6uu" path="res://addons/kenney_prototype_textures/orange/texture_01.png" id="1_s8645"]
 [ext_resource type="Script" path="res://scenes/ship/ship.gd" id="1_vpity"]
@@ -11,6 +11,9 @@
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qwfyk"]
 size = Vector3(8.81317, 1.06689, 14.452)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_m2uqv"]
+size = Vector3(5.11607, 1.06689, 14.452)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7a05m"]
 size = Vector3(5.59188, 0.320129, 7.34251)
@@ -52,7 +55,6 @@ size = Vector3(9.68854, 3.16309, 14.5098)
 [node name="SHIP" type="RigidBody3D"]
 collision_layer = 2
 collision_mask = 6
-linear_damp_mode = 1
 script = ExtResource("1_vpity")
 
 [node name="ProbeContainer" type="Node3D" parent="."]
@@ -97,6 +99,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.903, 0, 10.0871)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0302429, 2.07443, -0.0749966)
 shape = SubResource("BoxShape3D_qwfyk")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.71719, -0.696877, 0, 0.696877, 0.71719, 0, 0, 0, 1, 2.16531, -0.0872762, -0.0749966)
+shape = SubResource("BoxShape3D_m2uqv")
+
+[node name="CollisionShape3D6" type="CollisionShape3D" parent="."]
+transform = Transform3D(-0.741109, -0.671384, 0, 0.671384, -0.741109, 0, 0, 0, 1, -2.21807, -0.0872762, -0.0749966)
+shape = SubResource("BoxShape3D_m2uqv")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0624347, 6.19697, -0.0212101)

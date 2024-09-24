@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=4 uid="uid://b32lgqr6ri464"]
+[gd_scene load_steps=10 format=4 uid="uid://b32lgqr6ri464"]
 
 [ext_resource type="Script" path="res://scenes/charapters/mobs/fish/peace/test_fish.gd" id="1_0xg4t"]
 [ext_resource type="Texture2D" uid="uid://cqytuovphn7ou" path="res://scenes/load_assets/fish_0.png" id="1_gj45p"]
@@ -207,20 +207,37 @@ _data = {
 radius = 0.992572
 height = 6.54689
 
-[node name="test-fish" type="CharacterBody3D"]
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_okgdn"]
+properties/0/path = NodePath(".:_position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:_rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath(".:_main_pos")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+
+[node name="test-fish" type="CharacterBody3D" node_paths=PackedStringArray("directions")]
+collision_layer = 4
+collision_mask = 7
 script = ExtResource("1_0xg4t")
+float_force = 0.5
+water_drag = 0.0
+water_angular_drag = 0.0
+directions = [NodePath("dir/Marker3D"), NodePath("dir/Marker3D5"), NodePath("dir/Marker3D2"), NodePath("dir/Marker3D6"), NodePath("dir/Marker3D7"), NodePath("dir/Marker3D8"), NodePath("dir/Marker3D3"), NodePath("dir/Marker3D4")]
 
-[node name="Sketchfab_Scene" type="Node3D" parent="."]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
+[node name="Fish" type="RigidBody3D" parent="."]
+collision_layer = 2
+collision_mask = 7
 
-[node name="Sketchfab_model" type="Node3D" parent="Sketchfab_Scene"]
-transform = Transform3D(1, 0, 0, 0, 2.22045e-16, 1, 0, -1, 2.22045e-16, 0, 0, 0)
+[node name="Sketchfab_model" type="Node3D" parent="Fish"]
 
-[node name="Root" type="Node3D" parent="Sketchfab_Scene/Sketchfab_model"]
+[node name="Root" type="Node3D" parent="Fish/Sketchfab_model"]
 
-[node name="Armature" type="Node3D" parent="Sketchfab_Scene/Sketchfab_model/Root"]
+[node name="Armature" type="Node3D" parent="Fish/Sketchfab_model/Root"]
 
-[node name="Skeleton3D" type="Skeleton3D" parent="Sketchfab_Scene/Sketchfab_model/Root/Armature"]
+[node name="Skeleton3D" type="Skeleton3D" parent="Fish/Sketchfab_model/Root/Armature"]
 bones/0/name = "Armature_rootJoint"
 bones/0/parent = -1
 bones/0/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
@@ -334,19 +351,80 @@ bones/15/position = Vector3(0, 0.38871, 0)
 bones/15/rotation = Quaternion(-0.0418357, -0.000612816, 0.0146338, 0.999017)
 bones/15/scale = Vector3(0.999999, 0.999999, 1)
 
-[node name="fish_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/Root/Armature/Skeleton3D"]
+[node name="fish_0" type="MeshInstance3D" parent="Fish/Sketchfab_model/Root/Armature/Skeleton3D"]
+transform = Transform3D(-1, 8.74228e-08, 3.82137e-15, 0, -4.37114e-08, 1, 8.74228e-08, 1, 4.37114e-08, 0.00305753, 0.0074109, -0.00675659)
 mesh = SubResource("ArrayMesh_q4om3")
 skin = SubResource("Skin_i26ah")
 
-[node name="fish" type="Node3D" parent="Sketchfab_Scene/Sketchfab_model/Root/Armature"]
+[node name="fish" type="Node3D" parent="Fish/Sketchfab_model/Root/Armature"]
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Sketchfab_Scene"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Fish"]
 libraries = {
 "": SubResource("AnimationLibrary_q1gr6")
 }
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0.890869)
+[node name="ProbeContainer" type="Node3D" parent="Fish"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.166817, 0)
+
+[node name="Marker3D" type="Marker3D" parent="Fish/ProbeContainer"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.00389, 0, 0)
+
+[node name="Marker3D2" type="Marker3D" parent="Fish/ProbeContainer"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.00388, 0, 0)
+
+[node name="Marker3D3" type="Marker3D" parent="Fish/ProbeContainer"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.00389, 0, 3.18202)
+
+[node name="Marker3D4" type="Marker3D" parent="Fish/ProbeContainer"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.00388, 0, 3.18202)
+
+[node name="Marker3D5" type="Marker3D" parent="Fish/ProbeContainer"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.00389, 0, -3.62354)
+
+[node name="Marker3D6" type="Marker3D" parent="Fish/ProbeContainer"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.00388, 0, -3.62354)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Fish"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -0.00305753, 0.00742151, 0.00675659)
 shape = SubResource("CapsuleShape3D_y0ieq")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+avoidance_enabled = true
+debug_enabled = true
+debug_use_custom = true
+debug_path_custom_color = Color(1, 0.235294, 0, 1)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_okgdn")
+
+[node name="dir" type="Node3D" parent="."]
+
+[node name="Marker3D" type="Marker3D" parent="dir"]
+transform = Transform3D(1, 0, 0, 0, 0.984983, 0.172651, 0, -0.172651, 0.984983, 0, -0.505235, -14.13)
+
+[node name="Marker3D5" type="Marker3D" parent="dir"]
+transform = Transform3D(1, 0, 0, 0, 0.984983, 0.172651, 0, -0.172651, 0.984983, 8.221, -0.293586, -8.08425)
+
+[node name="Marker3D2" type="Marker3D" parent="dir"]
+transform = Transform3D(1, 0, 0, 0, 0.984983, 0.172651, 0, -0.172651, 0.984983, 14.3919, -0.0120402, -0.0419781)
+
+[node name="Marker3D6" type="Marker3D" parent="dir"]
+transform = Transform3D(1, 0, 0, 0, 0.984983, 0.172651, 0, -0.172651, 0.984983, 7.95474, 0.267446, 7.94146)
+
+[node name="Marker3D7" type="Marker3D" parent="dir"]
+transform = Transform3D(1, 0, 0, 0, 0.984983, 0.172651, 0, -0.172651, 0.984983, -8.02193, 0.267446, 7.94146)
+
+[node name="Marker3D8" type="Marker3D" parent="dir"]
+transform = Transform3D(1, 0, 0, 0, 0.984983, 0.172651, 0, -0.172651, 0.984983, -8.02193, -0.297373, -8.19245)
+
+[node name="Marker3D3" type="Marker3D" parent="dir"]
+transform = Transform3D(1, 0, 0, 0, 0.984983, 0.172651, 0, -0.172651, 0.984983, 0.00637817, 0.565126, 16.4446)
+
+[node name="Marker3D4" type="Marker3D" parent="dir"]
+transform = Transform3D(1, 0, 0, 0, 0.984983, 0.172651, 0, -0.172651, 0.984983, -13.5086, 0.00821709, 0.536667)
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

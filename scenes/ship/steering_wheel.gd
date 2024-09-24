@@ -37,8 +37,9 @@ func _activation(a):
 			
 func _process(delta: float) -> void:
 	management(delta)
-	if Input.is_action_just_pressed("back_ui"):
-		back_r()
+	if multiplayer.get_unique_id() == order_player: # Проверка, что игрок активировал штурвал
+		if Input.is_action_just_pressed("back_ui"):
+			back_r()
 
 func back_r():
 	back.rpc()
