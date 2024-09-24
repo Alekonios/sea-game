@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://bfg8v58buqo5s"]
+[gd_scene load_steps=53 format=3 uid="uid://bfg8v58buqo5s"]
 
 [ext_resource type="Script" path="res://scenes/locations/test/test.gd" id="1_qwl7r"]
 [ext_resource type="Texture2D" uid="uid://cd2cwywywf70u" path="res://addons/kenney_prototype_textures/dark/texture_01.png" id="2_16wt7"]
@@ -156,6 +156,20 @@ size = Vector2(500, 500)
 subdivide_width = 256
 subdivide_depth = 256
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_eavtu"]
+properties/0/path = NodePath(".:target_time")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:target_noise_scale")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath(".:target_wave_speed")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+properties/3/path = NodePath(".:target_height_scale")
+properties/3/spawn = true
+properties/3/replication_mode = 1
+
 [sub_resource type="CylinderMesh" id="CylinderMesh_3h5dp"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_vm854"]
@@ -174,9 +188,7 @@ sky = SubResource("Sky_t1ght")
 ambient_light_sky_contribution = 0.24
 tonemap_mode = 3
 tonemap_exposure = 0.9
-ssr_enabled = true
-ssao_enabled = true
-ssil_enabled = true
+sdfgi_read_sky_light = false
 fog_mode = 1
 fog_density = 1.0
 fog_sky_affect = 0.284
@@ -520,6 +532,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.03912, 25.8829, -41.5162)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -12.1985, 0)
 mesh = SubResource("PlaneMesh_0xwda")
 script = ExtResource("11_c2prg")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="Water"]
+replication_config = SubResource("SceneReplicationConfig_eavtu")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.23369, 0, 0, 0, 2.39654, 0, 0, 0, 0.282608, 0, 0, 0)

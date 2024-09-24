@@ -34,8 +34,8 @@ func sync(delta):
 		target_rotation = global_rotation
 		
 	else:
-		global_position = global_position.lerp(target_position, delta * 1)
-		global_rotation.y = lerp_angle(global_rotation.y, target_rotation.y, delta * 1)
+		global_position = global_position.lerp(target_position, delta * 3)
+		global_rotation.y = lerp_angle(global_rotation.y, target_rotation.y, delta * 8)
 
 		
 func _physics_process(delta):
