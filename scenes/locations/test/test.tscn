@@ -10,7 +10,7 @@
 [ext_resource type="Script" path="res://scenes/locations/test/lb.gd" id="5_jqn8k"]
 [ext_resource type="PackedScene" uid="uid://becbj6c7rd3lu" path="res://scenes/places/metal_place.tscn" id="7_5a1xu"]
 [ext_resource type="PackedScene" uid="uid://cp3gje0nkhous" path="res://scenes/places/wood_place.tscn" id="7_q16n0"]
-[ext_resource type="PackedScene" uid="uid://bjxikdxrndls" path="res://scenes/ship/ship.tscn" id="9_mx2ih"]
+[ext_resource type="PackedScene" uid="uid://bjxikdxrndls" path="res://scenes/ship/ship_test.tscn" id="9_mx2ih"]
 [ext_resource type="Shader" path="res://shaders/water.gdshader" id="10_bjltn"]
 [ext_resource type="Script" path="res://scenes/other/Water.gd" id="11_c2prg"]
 [ext_resource type="Script" path="res://scenes/locations/test/penis TETS.gd" id="11_wkggo"]
@@ -486,7 +486,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.0792, 1.95124, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.0436, -3.17909, -6.81699)
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
-_spawnable_scenes = PackedStringArray("res://scenes/charapters/players/Charapter.tscn", "res://scenes/ship/ship.tscn")
+_spawnable_scenes = PackedStringArray("res://scenes/charapters/players/Charapter.tscn")
 spawn_path = NodePath("../Node")
 
 [node name="Node" type="Node" parent="."]

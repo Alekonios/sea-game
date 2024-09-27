@@ -16,7 +16,7 @@ extends RigidBody3D
 @onready var probes = $ProbeContainer.get_children()
 
 var player = false
-
+#1
 @onready var pos
 
 var SPEED = 0.0
