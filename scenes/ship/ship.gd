@@ -45,7 +45,6 @@ func _physics_process(delta):
 	forward_direction = forward_direction.normalized()
 	linear_velocity.x = forward_direction.x * SPEED * delta * 50
 	linear_velocity.z = forward_direction.z * SPEED * delta * 50
-	
 
 func moving(delta):
 	submerged = false
