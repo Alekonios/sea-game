@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://bjxikdxrndls"]
+[gd_scene load_steps=22 format=3 uid="uid://bjxikdxrndls"]
 
 [ext_resource type="Texture2D" uid="uid://dikf5a8h2q6uu" path="res://addons/kenney_prototype_textures/orange/texture_01.png" id="1_s8645"]
 [ext_resource type="Script" path="res://scenes/ship/ship.gd" id="1_vpity"]
@@ -51,6 +51,10 @@ properties/1/replication_mode = 1
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vc7is"]
 size = Vector3(9.68854, 3.16309, 14.5098)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_usmpv"]
+height = 1.33265
+radius = 2.06526
 
 [node name="SHIP" type="RigidBody3D"]
 collision_layer = 2
@@ -211,6 +215,13 @@ collision_layer = 0
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Apply vel player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0801086, 3.64025, 3.38599)
 shape = SubResource("BoxShape3D_vc7is")
+
+[node name="EnterHoldArea" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 17.5068)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EnterHoldArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.205427)
+shape = SubResource("CylinderShape3D_usmpv")
 
 [connection signal="area_entered" from="Components/steering wheel/shturval_collision" to="Components/steering wheel" method="_on_shturval_collision_area_entered"]
 [connection signal="area_exited" from="Components/steering wheel/shturval_collision" to="Components/steering wheel" method="_on_shturval_collision_area_exited"]

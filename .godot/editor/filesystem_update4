@@ -1,9 +1,8 @@
-res://scenes/locations/test/test.tscn
-res://textures/tres/changed/day_sky (1).tres
-res://scenes/charapters/players/Charapter.tscn
-res://scenes/ship/ship_test.tscn
 res://scenes/ship/another_ship_test.tscn
-res://shaders/in_water.gdshader
+res://textures/tres/changed/day_sky (1).tres
 res://shaders/water.gdshader
 res://shaders/water_mask.gdshader
+res://scenes/locations/test/test.tscn
+res://scenes/charapters/players/Charapter.tscn
+res://scenes/ship/ship_test.tscn
 res://scenes/ship/ship.gd

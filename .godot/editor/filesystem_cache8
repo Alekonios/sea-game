@@ -1,5 +1,5 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1727462265
+::res://::1727607285
 e5d2699a95b104a.mp3::AudioStreamMP3::4866287435725042860::1727462248::1727462264::1::::<><>::
 icon.svg::CompressedTexture2D::489500336959251371::1724503653::1727462265::1::::<><>::
 README.md::TextFile::-1::1724503653::0::1::::<><>::
@@ -134,8 +134,8 @@ texture_10.png::CompressedTexture2D::5722248667768960786::1724503653::1727462264
 texture_11.png::CompressedTexture2D::1007716709230014437::1724503653::1727462264::1::::<><>::
 texture_12.png::CompressedTexture2D::2325169857133705530::1724503653::1727462264::1::::<><>::
 texture_13.png::CompressedTexture2D::4319672355772917248::1724503653::1727462264::1::::<><>::
-::res://addons/kenney_prototype_textures/light/::1727462264
-texture_01.png::CompressedTexture2D::4377022716148140372::1724503653::1727462264::1::::<><>::
+::res://addons/kenney_prototype_textures/light/::1727554333
+texture_01.png::CompressedTexture2D::4377022716148140372::1724503653::1727554333::1::::<><>::
 texture_02.png::CompressedTexture2D::6727475247788393147::1724503653::1727462264::1::::<><>::
 texture_03.png::CompressedTexture2D::1639726603850720022::1724503653::1727462264::1::::<><>::
 texture_04.png::CompressedTexture2D::7384408132077811390::1724503653::1727462264::1::::<><>::
@@ -162,8 +162,8 @@ texture_10.png::CompressedTexture2D::263258480153374958::1724503653::1727462265:
 texture_11.png::CompressedTexture2D::4408406617912559623::1724503653::1727462265::1::::<><>::
 texture_12.png::CompressedTexture2D::1843525677002920189::1724503653::1727462265::1::::<><>::
 texture_13.png::CompressedTexture2D::4846199390641691811::1724503653::1727462265::1::::<><>::
-::res://addons/kenney_prototype_textures/purple/::1727462265
-texture_01.png::CompressedTexture2D::1445622181569490977::1724503653::1727462265::1::::<><>::
+::res://addons/kenney_prototype_textures/purple/::1727554333
+texture_01.png::CompressedTexture2D::1445622181569490977::1724503653::1727554333::1::::<><>::
 texture_02.png::CompressedTexture2D::3965543654958799162::1724503653::1727462265::1::::<><>::
 texture_03.png::CompressedTexture2D::1153255701389489211::1724503653::1727462265::1::::<><>::
 texture_04.png::CompressedTexture2D::2679943285359957005::1724503653::1727462265::1::::<><>::
@@ -197,8 +197,8 @@ texture_13.png::CompressedTexture2D::4219347706436255315::1724503653::1727462265
 ::res://scenes/charapters/mobs/fish/peace/::1727462248
 test_fish.gd::GDScript::-1::1727462248::0::1::::<>CharacterBody3D<>::
 TEST_FISH.tscn::PackedScene::4408125974668324511::1727462248::0::1::::<><>::res://scenes/charapters/mobs/fish/peace/test_fish.gd<>uid://cqytuovphn7ou::::res://scenes/load_assets/fish_0.png
-::res://scenes/charapters/players/::1727462277
-Charapter.tscn::PackedScene::3085908063172223973::1727462277::0::1::::<><>::res://scenes/charapters/players/charapter_movement.gd<>res://shaders/in_water.gdshader<>res://scenes/charapters/players/components/state_macine.gd<>uid://cu8ht4ah48w23::::res://scenes/load_assets/Shroom_main_5_Untitled.png<>uid://w4ci0mqrn5t0::::res://scenes/load_assets/Shroom_main_5_Untitled_1.png<>uid://dndvb4nlwlxi6::::res://scenes/load_assets/Shroom_main_5_Untitled_2.png<>res://scenes/charapters/players/components/Interaction_Component.gd<>uid://lauug3byhuyf::::res://sounds/Move_sounds/move_wood/3edc1efc346c39f_cP7SsoPL.mp3<>res://scenes/charapters/players/components/sound_component.gd<>uid://dvi8obo5mfjso::::res://sounds/Move_sounds/move_wood/3edc1efc346c39f_Edf5FQgr.mp3<>uid://bvdfktm07s5v::::res://sounds/Move_sounds/move_wood/3edc1efc346c39f_pGuTxHY3.mp3<>uid://lyn46qhve5wi::::res://sounds/Move_sounds/move_metall/6b87fc128ead4ed.mp3<>uid://dstakvtte72d4::::res://sounds/Move_sounds/move_metall/13b85c71066cbcc.mp3<>uid://chrgtfl672g5e::::res://sounds/Move_sounds/move_metall/65dacc623f13dc6.mp3
+::res://scenes/charapters/players/::1727554886
+Charapter.tscn::PackedScene::3085908063172223973::1727554886::0::1::::<><>::res://scenes/charapters/players/charapter_movement.gd<>res://shaders/in_water.gdshader<>res://scenes/charapters/players/components/state_macine.gd<>uid://cu8ht4ah48w23::::res://scenes/load_assets/Shroom_main_5_Untitled.png<>uid://w4ci0mqrn5t0::::res://scenes/load_assets/Shroom_main_5_Untitled_1.png<>uid://dndvb4nlwlxi6::::res://scenes/load_assets/Shroom_main_5_Untitled_2.png<>res://scenes/charapters/players/components/Interaction_Component.gd<>uid://lauug3byhuyf::::res://sounds/Move_sounds/move_wood/3edc1efc346c39f_cP7SsoPL.mp3<>res://scenes/charapters/players/components/sound_component.gd<>uid://dvi8obo5mfjso::::res://sounds/Move_sounds/move_wood/3edc1efc346c39f_Edf5FQgr.mp3<>uid://bvdfktm07s5v::::res://sounds/Move_sounds/move_wood/3edc1efc346c39f_pGuTxHY3.mp3<>uid://lyn46qhve5wi::::res://sounds/Move_sounds/move_metall/6b87fc128ead4ed.mp3<>uid://dstakvtte72d4::::res://sounds/Move_sounds/move_metall/13b85c71066cbcc.mp3<>uid://chrgtfl672g5e::::res://sounds/Move_sounds/move_metall/65dacc623f13dc6.mp3
 charapter_movement.gd::GDScript::-1::1727462248::0::1::::Movement<>CharacterBody3D<>::
 ::res://scenes/charapters/players/components/::1727462248
 Interaction_Component.gd::GDScript::-1::1727462248::0::1::::InteractionComponent<>Node<>::
@@ -209,39 +209,42 @@ hitbox_component.tscn::PackedScene::7636815062819052393::1727462248::0::1::::<><
 ::res://scenes/hud/::1724503653
 main_menu.gd::GDScript::-1::1724503653::0::1::::<>Control<>::
 main_menu.tscn::PackedScene::7933551947504275584::1724503653::0::1::::<><>::res://scenes/hud/main_menu.gd
-::res://scenes/load_assets/::1727462369
+::res://scenes/load_assets/::1727554334
 fish.glb::PackedScene::7510516514641364757::1727462248::1727462269::1::::<><>::uid://cqytuovphn7ou::::res://scenes/load_assets/fish_0.png
 fish_0.png::CompressedTexture2D::5946598038892044520::1727462248::1727462265::1::::<><>::
+Hata4.glb::PackedScene::7761780979348610404::1727554216::1727554334::1::::<><>::
 Kaliko_anim__full_ (1).glb::PackedScene::6850055129390953291::1727462248::1727462269::1::::<><>::
 Kaliko_clothes.obj::Mesh::5078624607543699285::1727462248::1727462266::1::::<><>::
 Ship_demo.glb::PackedScene::1609673312988970629::1727462248::1727462268::1::::<><>::
+Ship_demo_bottom.glb::PackedScene::8950126104738144002::1727554216::1727554334::1::::<><>::
 Shroom_main_5.glb::PackedScene::6332384558362567236::1724503653::1727462268::1::::<><>::uid://cu8ht4ah48w23::::res://scenes/load_assets/Shroom_main_5_Untitled.png<>uid://w4ci0mqrn5t0::::res://scenes/load_assets/Shroom_main_5_Untitled_1.png<>uid://dndvb4nlwlxi6::::res://scenes/load_assets/Shroom_main_5_Untitled_2.png
 Shroom_main_5_Untitled.png::CompressedTexture2D::6245203178599659970::1724503653::1727462265::1::::<><>::
 Shroom_main_5_Untitled_1.png::CompressedTexture2D::1604158567612855439::1724503653::1727462265::1::::<><>::
 Shroom_main_5_Untitled_2.png::CompressedTexture2D::8079188538067164003::1724503653::1727462265::1::::<><>::
 ::res://scenes/locations/::1724503653
-::res://scenes/locations/test/::1727462277
+::res://scenes/locations/test/::1727554885
 lb.gd::GDScript::-1::1727462248::0::1::::<>CSGBox3D<>::
 penis TETS.gd::GDScript::-1::1727462248::0::1::::<>Node3D<>::
 test clothes.tscn::PackedScene::855150508332778836::1727462248::0::1::::<><>::uid://cemeg8kyj2pm0::::res://scenes/load_assets/Kaliko_clothes.obj
 test.gd::GDScript::-1::1727462248::0::1::::<>Node<>::
-test.tscn::PackedScene::2751793957592776038::1727462277::0::1::::<><>::res://scenes/locations/test/test.gd<>uid://cd2cwywywf70u::::res://addons/kenney_prototype_textures/dark/texture_01.png<>uid://dnkib6v1u2d7::::res://textures/tres/changed/day_sky (1).tres<>uid://c7o1wi2w5rlu0::::res://addons/kenney_prototype_textures/dark/texture_05.png<>uid://b32lgqr6ri464::::res://scenes/charapters/mobs/fish/peace/TEST_FISH.tscn<>uid://dikf5a8h2q6uu::::res://addons/kenney_prototype_textures/orange/texture_01.png<>res://addons/hitbox_component.gd<>res://scenes/locations/test/lb.gd<>uid://becbj6c7rd3lu::::res://scenes/places/metal_place.tscn<>uid://cp3gje0nkhous::::res://scenes/places/wood_place.tscn<>uid://bjxikdxrndls::::res://scenes/ship/ship_test.tscn<>res://shaders/water.gdshader<>res://scenes/other/Water.gd<>res://scenes/locations/test/penis TETS.gd
+test.tscn::PackedScene::2751793957592776038::1727554885::0::1::::<><>::res://scenes/locations/test/test.gd<>uid://cd2cwywywf70u::::res://addons/kenney_prototype_textures/dark/texture_01.png<>uid://dnkib6v1u2d7::::res://textures/tres/changed/day_sky (1).tres<>uid://c7o1wi2w5rlu0::::res://addons/kenney_prototype_textures/dark/texture_05.png<>uid://dikf5a8h2q6uu::::res://addons/kenney_prototype_textures/orange/texture_01.png<>res://addons/hitbox_component.gd<>res://scenes/locations/test/lb.gd<>uid://becbj6c7rd3lu::::res://scenes/places/metal_place.tscn<>uid://cp3gje0nkhous::::res://scenes/places/wood_place.tscn<>uid://bjxikdxrndls::::res://scenes/ship/ship_test.tscn<>res://shaders/water.gdshader<>res://scenes/ship/ship.gd<>res://scenes/other/Water.gd<>res://scenes/locations/test/penis TETS.gd<>res://shaders/water_mask.gdshader<>res://scenes/ship/piston_component.gd<>res://scenes/ship/steering_wheel.gd<>uid://cdupdty3m1x67::::res://addons/kenney_prototype_textures/red/texture_01.png<>uid://dgxt0p2qehqv5::::res://addons/kenney_prototype_textures/green/texture_01.png<>uid://dg2lh07mitpxh::::res://scenes/components/hitbox_component.tscn
 ::res://scenes/other/::1727462248
 Water.gd::GDScript::-1::1727462248::0::1::::<>MeshInstance3D<>::
 water.tscn::PackedScene::3239274400124854991::1727462248::0::1::::<><>::res://shaders/water.gdshader<>res://scenes/other/Water.gd
 ::res://scenes/places/::1727462248
 metal_place.tscn::PackedScene::2671383235681525922::1727462248::0::1::::<><>::
 wood_place.tscn::PackedScene::5883857222489931306::1724503653::0::1::::<><>::
-::res://scenes/ship/::1727462248
+::res://scenes/ship/::1727554909
+another_ship_test.tscn::PackedScene::6512089623551683379::1727554909::0::1::::<><>::res://scenes/ship/ship.gd<>uid://dikf5a8h2q6uu::::res://addons/kenney_prototype_textures/orange/texture_01.png<>res://scenes/ship/piston_component.gd<>res://shaders/water_mask.gdshader<>uid://cdupdty3m1x67::::res://addons/kenney_prototype_textures/red/texture_01.png<>res://addons/hitbox_component.gd<>res://scenes/ship/steering_wheel.gd<>uid://dgxt0p2qehqv5::::res://addons/kenney_prototype_textures/green/texture_01.png<>uid://dg2lh07mitpxh::::res://scenes/components/hitbox_component.tscn
 piston_component.gd::GDScript::-1::1727462248::0::1::::<>Node3D<>::
-another_ship_test.tscn::PackedScene::6512089623551683379::1727462387::0::1::::<><>::res://scenes/ship/ship.gd<>uid://dikf5a8h2q6uu::::res://addons/kenney_prototype_textures/orange/texture_01.png<>res://scenes/ship/piston_component.gd<>uid://cdupdty3m1x67::::res://addons/kenney_prototype_textures/red/texture_01.png<>res://addons/hitbox_component.gd<>res://scenes/ship/steering_wheel.gd<>uid://dgxt0p2qehqv5::::res://addons/kenney_prototype_textures/green/texture_01.png<>uid://dg2lh07mitpxh::::res://scenes/components/hitbox_component.tscn
-ship.gd::GDScript::-1::1727462248::0::1::::SHIP<>RigidBody3D<>::
-ship_test.tscn::PackedScene::90179551545600172::1727462248::0::1::::<><>::uid://dikf5a8h2q6uu::::res://addons/kenney_prototype_textures/orange/texture_01.png<>res://scenes/ship/ship.gd<>res://scenes/ship/piston_component.gd<>uid://cdupdty3m1x67::::res://addons/kenney_prototype_textures/red/texture_01.png<>res://addons/hitbox_component.gd<>uid://dgxt0p2qehqv5::::res://addons/kenney_prototype_textures/green/texture_01.png<>res://scenes/ship/steering_wheel.gd<>uid://dg2lh07mitpxh::::res://scenes/components/hitbox_component.tscn
+ship.gd::GDScript::-1::1727554689::0::1::::SHIP<>RigidBody3D<>::
+ship_test.tscn::PackedScene::90179551545600172::1727554886::0::1::::<><>::uid://dikf5a8h2q6uu::::res://addons/kenney_prototype_textures/orange/texture_01.png<>res://scenes/ship/ship.gd<>res://scenes/ship/piston_component.gd<>uid://cdupdty3m1x67::::res://addons/kenney_prototype_textures/red/texture_01.png<>res://addons/hitbox_component.gd<>uid://dgxt0p2qehqv5::::res://addons/kenney_prototype_textures/green/texture_01.png<>res://scenes/ship/steering_wheel.gd<>uid://dg2lh07mitpxh::::res://scenes/components/hitbox_component.tscn
 steering_wheel.gd::GDScript::-1::1727462248::0::1::::<>Node3D<>::
-::res://shaders/::1727462248
-in_water.gdshader::Shader::-1::1727462248::0::1::::<><>::
+::res://shaders/::1727555197
+in_water.gdshader::Shader::-1::1727463765::0::1::::<><>::
 stylized_sky.gdshader::Shader::-1::1727462248::0::1::::<><>::
-water.gdshader::Shader::-1::1727462248::0::1::::<><>::
+water.gdshader::Shader::-1::1727555197::0::1::::<><>::
+water_mask.gdshader::Shader::-1::1727555197::0::1::::<><>::
 ::res://sounds/::1724503653
 ::res://sounds/Move_sounds/::1727462248
 ::res://sounds/Move_sounds/move_metall/::1727462264
@@ -254,8 +257,8 @@ water.gdshader::Shader::-1::1727462248::0::1::::<><>::
 3edc1efc346c39f_pGuTxHY3.mp3::AudioStreamMP3::113732411585809961::1724503653::1727462264::1::::<><>::
 ::res://textures/::1727462248
 ::res://textures/tres/::1727462248
-::res://textures/tres/changed/::1727462277
-day_sky (1).tres::ShaderMaterial::238024999397771154::1727462277::0::1::::<><>::res://shaders/stylized_sky.gdshader<>uid://cwiaw2rei2tgu::::res://addons/kenney_particle_pack/circle_05.png
+::res://textures/tres/changed/::1727554689
+day_sky (1).tres::ShaderMaterial::238024999397771154::1727554689::0::1::::<><>::res://shaders/stylized_sky.gdshader<>uid://cwiaw2rei2tgu::::res://addons/kenney_particle_pack/circle_05.png
 water.tscn::PackedScene::453235870224111079::1727462248::0::1::::<><>::res://shaders/water.gdshader<>res://scenes/other/Water.gd
 ::res://textures/tres/stok/::1727462248
 day_sky.tres::ShaderMaterial::7716055804737854714::1727462248::0::1::::<><>::res://shaders/stylized_sky.gdshader<>uid://c5lfa0sl7nyv3::::res://addons/kenney_particle_pack/light_01.png
