@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://bw7uiwmarw7gs"]
+
+[ext_resource type="Material" uid="uid://dnkib6v1u2d7" path="res://textures/tres/changed/day_sky (1).tres" id="1_qphl7"]
+
+[sub_resource type="Sky" id="Sky_t1ght"]
+sky_material = ExtResource("1_qphl7")
+
+[sub_resource type="Environment" id="Environment_t45qn"]
+background_mode = 2
+sky = SubResource("Sky_t1ght")
+ambient_light_sky_contribution = 0.24
+tonemap_mode = 3
+tonemap_exposure = 0.9
+sdfgi_read_sky_light = false
+fog_mode = 1
+fog_density = 1.0
+fog_sky_affect = 0.284
+volumetric_fog_enabled = true
+volumetric_fog_albedo = Color(1, 0.837887, 0.719931, 1)
+volumetric_fog_anisotropy = 0.6
+volumetric_fog_length = 2.0
+adjustment_contrast = 1.1
+adjustment_saturation = 1.59
+
+[sub_resource type="CameraAttributesPhysical" id="CameraAttributesPhysical_7ochu"]
+auto_exposure_speed = 0.2
+
+[node name="DirectionalLight3D" type="DirectionalLight3D"]
+transform = Transform3D(-0.361867, -0.823253, -0.437386, -0.777961, 0.00817146, 0.628259, -0.513642, 0.567615, -0.643416, -0.124758, 4.0013, 0.000926495)
+light_temperature = 5180.0
+light_volumetric_fog_energy = 16.0
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_t45qn")
+camera_attributes = SubResource("CameraAttributesPhysical_7ochu")

@@ -1,62 +1,54 @@
 extends Node3D
 
-var player_camera
 var player
+var area_player = []
 
-var want_activation = false
-var have_order = false
 var order_player 
 var rotate_speed = 0.0
 
+var sender
+
+
 @export var ship : SHIP
+@export var shturval_mesh : Node3D
 
 @onready var camera = $Camera3D
 
 
 
-func _on_shturval_collision_area_entered(area: Area3D) -> void:
-	if !want_activation:
-		player_camera = area.get_parent().camera_cur
-		player = area.get_parent()
-		want_activation = true
 
-func activation():
-	if !have_order:
-		if multiplayer.get_unique_id() != order_player:
-			order_player = multiplayer.get_unique_id()
-			_activation.rpc(order_player)
+#функция, которая на прямую связана с хитбоксом, для запоминания игрока. который управляет короблем
+@rpc("any_peer", "call_local", "reliable")
+func activation(_sender):
+	if !order_player:
+		sender = _sender
+		print(multiplayer.get_remote_sender_id())
+		order_player = multiplayer.get_remote_sender_id()
+		if multiplayer.get_remote_sender_id() == order_player:
+			if sender is CharacterBody3D:
+				sender.block = true
+				print("игрок" + str(order_player) + "начал управлять штурвалом")
 
-@rpc("any_peer", "reliable", "call_local")
-func _activation(a):
-	if want_activation and !have_order:
-		have_order = true
-		want_activation = false
-		if multiplayer.get_unique_id() == a:
-			camera.current = true
-			player.block = true
-			
+#управление и проверка на нажатие кнопки для выхода
 func _process(delta: float) -> void:
 	management(delta)
-	if multiplayer.get_unique_id() == order_player: # Проверка, что игрок активировал штурвал
-		if Input.is_action_just_pressed("back_ui"):
-			back_r()
-
+	if Input.is_action_just_pressed("back_ui"):
+		#отсылает на не на рпс функцию, т.к в процессе это вызвает баги
+		back_r()
+		
+		
 func back_r():
 	back.rpc()
 
-@rpc("any_peer", "reliable", "call_local")
+#выход из режима управления
+@rpc("any_peer", "call_local", "reliable")
 func back():
-		if have_order:
-			have_order = false
-			if multiplayer.get_unique_id() == order_player:
-				player.block = false
-				player.not_block()
-				want_activation = true
+	if order_player:
+		if multiplayer.get_remote_sender_id() == order_player:
+			if sender is CharacterBody3D:
 				order_player = null
-				print("sdasd")
-			
-		
-
+				sender.not_block()
+				sender = null
 
 func management(delta):
 	if multiplayer.get_unique_id() == order_player and ship.state == ship.States.Swim:
@@ -70,11 +62,13 @@ func management(delta):
 func right(delta):
 	rotate_speed = lerp(rotate_speed, 0.2, 0.01)
 	ship.angular_velocity.y = rotate_speed
+	shturval_mesh.rotation.x += rotate_speed / 10
 	
 @rpc("any_peer", "reliable", "call_local")
 func left(delta):
 	rotate_speed = lerp(rotate_speed, -0.2, 0.01)
 	ship.angular_velocity.y = rotate_speed
+	shturval_mesh.rotation.x += rotate_speed / 10
 
 @rpc("any_peer", "reliable", "call_local")
 func none(delta):

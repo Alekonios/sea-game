@@ -91,9 +91,9 @@ func PENIS_VIS():
 	
 func PENIS_HID():
 	$PENIS.hide()
-	
+
 func not_block():
-	print(multiplayer.get_unique_id())
+	block = false
 	camera_cur.current = is_multiplayer_authority()
 	
 func _input(event):
@@ -109,3 +109,7 @@ func hide_ob():
 	if is_multiplayer_authority():
 		for i in player_meshes:
 			i.transparency = 1
+func show_ob():
+	if is_multiplayer_authority():
+		for i in player_meshes:
+			i.transparency = 0

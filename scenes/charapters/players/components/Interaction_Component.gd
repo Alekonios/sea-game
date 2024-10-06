@@ -11,11 +11,10 @@ func _process(delta: float) -> void:
 	if interaction_collider.is_colliding() and interaction_collider.get_collider() is Hitbox:
 		$"../../CanvasLayer/use".show()
 		if Input.is_action_just_pressed("use"):
+			interaction_collider.get_collider().sender = $"../.."
 			interaction_collider.get_collider().activation()
-			emit_signal("use")
+			
+			
 	else:
 		$"../../CanvasLayer/use".hide()
-		
-	if Input.is_action_just_pressed("back"):
-		emit_signal("interact")
 	
