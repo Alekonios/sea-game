@@ -519,10 +519,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.0792, 1.95124, 0)
 [node name="SHIP" parent="." instance=ExtResource("9_mx2ih")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.0436, -3.17909, -6.81699)
 
-[node name="OmniLight3D" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40.9766, -1.83713, -6.81699)
-omni_range = 7.75264
-
 [node name="SHIP2" parent="." instance=ExtResource("10_gw441")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.5671, 0.0188394, 9.2641)
 

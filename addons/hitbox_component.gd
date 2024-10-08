@@ -14,13 +14,13 @@ func activation():
 	if !have_rpc:
 		if Usable_Object:
 			if have_sender_withnt_rpc:
-				Usable_Object.activation(sender)
+				Usable_Object.activation(sender.get_path())
 			else:
 				Usable_Object.activation()
 	elif have_rpc:
 		if Usable_Object:
 			if have_sender_with_rpc:
-				Usable_Object.activation.rpc(sender)
+				Usable_Object.activation.rpc(sender.get_path())
 			else:
 				Usable_Object.activation.rpc()
 		

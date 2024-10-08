@@ -19,26 +19,25 @@ var sender
 
 #функция, которая на прямую связана с хитбоксом, для запоминания игрока. который управляет короблем
 @rpc("any_peer", "call_local", "reliable")
-func activation(_sender):
+func activation(_sender_path):
 	if !order_player:
+		var _sender = get_tree().root.get_node(_sender_path)
 		sender = _sender
-		print(multiplayer.get_remote_sender_id())
 		order_player = multiplayer.get_remote_sender_id()
+		print("первая ступень активации - " + str(order_player))
 		if multiplayer.get_remote_sender_id() == order_player:
-			if sender is CharacterBody3D:
+			print("вторая ступень активации" + str(sender))
+			if sender is Movement:
 				sender.block = true
-				print("игрок" + str(order_player) + "начал управлять штурвалом")
+				print("третья ступень активации")
+				print("игрок"  + str(order_player) + "начал управлять штурвалом")
 
 #управление и проверка на нажатие кнопки для выхода
 func _process(delta: float) -> void:
 	management(delta)
 	if Input.is_action_just_pressed("back_ui"):
 		#отсылает на не на рпс функцию, т.к в процессе это вызвает баги
-		back_r()
-		
-		
-func back_r():
-	back.rpc()
+		back.rpc()
 
 #выход из режима управления
 @rpc("any_peer", "call_local", "reliable")
@@ -46,9 +45,11 @@ func back():
 	if order_player:
 		if multiplayer.get_remote_sender_id() == order_player:
 			if sender is CharacterBody3D:
-				order_player = null
+				print("игрок" + " " + str(order_player) + "перестал управлять кораблем")
 				sender.not_block()
 				sender = null
+				order_player = null
+				
 
 func management(delta):
 	if multiplayer.get_unique_id() == order_player and ship.state == ship.States.Swim:
