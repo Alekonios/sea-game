@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cd2cwywywf70u" path="res://addons/kenney_prototype_textures/dark/texture_01.png" id="2_16wt7"]
 [ext_resource type="Texture2D" uid="uid://c7o1wi2w5rlu0" path="res://addons/kenney_prototype_textures/dark/texture_05.png" id="3_adnmp"]
 [ext_resource type="Texture2D" uid="uid://dikf5a8h2q6uu" path="res://addons/kenney_prototype_textures/orange/texture_01.png" id="4_dyjvv"]
-[ext_resource type="Script" path="res://addons/hitbox_component.gd" id="5_bpwuu"]
+[ext_resource type="Script" path="res://scenes/components/hitbox_component.gd" id="5_bpwuu"]
 [ext_resource type="Script" path="res://scenes/locations/test/lb.gd" id="5_jqn8k"]
 [ext_resource type="PackedScene" uid="uid://becbj6c7rd3lu" path="res://scenes/places/metal_place.tscn" id="7_5a1xu"]
 [ext_resource type="PackedScene" uid="uid://cp3gje0nkhous" path="res://scenes/places/wood_place.tscn" id="7_q16n0"]
@@ -633,7 +633,6 @@ shape = SubResource("ConcavePolygonShape3D_1ewes")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.361867, -0.823253, -0.437386, -0.777961, 0.00817146, 0.628259, -0.513642, 0.567615, -0.643416, -0.124758, 4.0013, 0.000926495)
-light_temperature = 5180.0
 light_volumetric_fog_energy = 16.0
 shadow_enabled = true
 

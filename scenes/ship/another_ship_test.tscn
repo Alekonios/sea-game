@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://scenes/ship/piston_component.gd" id="3_iwk1n"]
 [ext_resource type="Shader" path="res://shaders/water_mask.gdshader" id="3_mvpgl"]
 [ext_resource type="Texture2D" uid="uid://cdupdty3m1x67" path="res://addons/kenney_prototype_textures/red/texture_01.png" id="4_k5fmb"]
-[ext_resource type="Script" path="res://addons/hitbox_component.gd" id="5_a2w8r"]
+[ext_resource type="Script" path="res://scenes/components/hitbox_component.gd" id="5_a2w8r"]
 [ext_resource type="Script" path="res://scenes/ship/steering_wheel.gd" id="6_3tmf1"]
 [ext_resource type="Texture2D" uid="uid://dgxt0p2qehqv5" path="res://addons/kenney_prototype_textures/green/texture_01.png" id="7_tbm4l"]
 [ext_resource type="PackedScene" uid="uid://dg2lh07mitpxh" path="res://scenes/components/hitbox_component.tscn" id="8_k7bmo"]

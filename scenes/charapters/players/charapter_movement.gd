@@ -22,7 +22,7 @@ var ship_speed_z = 0.0
 @export var camera : Node3D
 @export var camera_cur = Camera3D
 
-@onready var player_meshes = [$Shroom_main_5/Armature_001/Cube_003, $Shroom_main_5/Armature_001/Skeleton3D/Cube_001, $Shroom_main_5/Armature_001/Skeleton3D/Cube_002, $Shroom_main_5/Armature_001/Skeleton3D/Cube_005, $Shroom_main_5/Armature_001/Skeleton3D/Cube_006, $Shroom_main_5/Armature_001/Skeleton3D/Cube_007, $Shroom_main_5/Armature_001/Skeleton3D/Cube_008, $Shroom_main_5/Armature_001/Skeleton3D/Cube_009, $Shroom_main_5/Armature_001/Skeleton3D/Cube_199]
+@onready var player_meshes = [$"Kalikotetstt/Armature_001/Skeleton3D/BézierCurve_014", $"Kalikotetstt/Armature_001/Skeleton3D/BézierCurve_015", $"Kalikotetstt/Armature_001/Skeleton3D/BézierCurve_016", $"Kalikotetstt/Armature_001/Skeleton3D/BézierCurve_017", $Kalikotetstt/Armature_001/Skeleton3D/Cube_001, $Kalikotetstt/Armature_001/Skeleton3D/Cube_002, $Kalikotetstt/Armature_001/Skeleton3D/Cube_003, $Kalikotetstt/Armature_001/Skeleton3D/Cube_007, $Kalikotetstt/Armature_001/Skeleton3D/Cube_008, $Kalikotetstt/Armature_001/Skeleton3D/Cube_009, $Kalikotetstt/Armature_001/Skeleton3D/Cube_010, $Kalikotetstt/Armature_001/Skeleton3D/Cube_011, $Kalikotetstt/Armature_001/Skeleton3D/Cube_013, $Kalikotetstt/Armature_001/Skeleton3D/Cube_014, $Kalikotetstt/Armature_001/Skeleton3D/Cube_087, $Kalikotetstt/Armature_001/Skeleton3D/Cube_088, $Kalikotetstt/Armature_001/Skeleton3D/Cube_089, $Kalikotetstt/Armature_001/Skeleton3D/Cylinder_001, $Kalikotetstt/Armature_001/Skeleton3D/Cylinder_031, $Kalikotetstt/Armature_001/Skeleton3D/Icosphere_011, $Kalikotetstt/Armature_001/Skeleton3D/Traveller_Mesh_v01_PlayerSuit_Body_001]
 
 signal interact
 
@@ -30,15 +30,14 @@ func _enter_tree() -> void:
 	set_multiplayer_authority(str(name).to_int())
 
 func _ready() -> void:
-	$Shroom_main_5/Armature_001/Skeleton3D/SkeletonIK3D.start()
 	hide_ob()
 	if not is_multiplayer_authority(): return
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	
+	camera.position.y = 1.9
 	camera_cur.current = is_multiplayer_authority()
+	
 
 func _physics_process(delta: float) -> void:
-	
 	if is_multiplayer_authority():
 		target_position = global_position
 		target_rotation = global_rotation
@@ -60,7 +59,7 @@ func _physics_process(delta: float) -> void:
 		run = true
 	else:
 		run = false
-
+	print(camera.position)
 	var input_dir := Input.get_vector("left", "right", "forward", "back")
 	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if direction and !block:
