@@ -1,0 +1,234 @@
+[gd_scene load_steps=2 format=3 uid="uid://dmjc1hbwf8p22"]
+
+[ext_resource type="Script" path="res://scenes/hud/main_menu_v_2.gd" id="1_v3mak"]
+
+[node name="menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_v3mak")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.147724, 0.20205, 0.243945, 1)
+
+[node name="Hud" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Hud"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -37.0
+offset_top = -81.0
+offset_right = 38.0
+offset_bottom = -58.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "sea-game"
+
+[node name="create-lobby" type="Button" parent="Hud"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -4.0
+offset_top = -4.0
+offset_right = 4.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Create-lobby"
+
+[node name="join-lobby" type="Button" parent="Hud"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -4.0
+offset_top = 31.0
+offset_right = 4.0
+offset_bottom = 39.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "join-lobby"
+
+[node name="Enter_Host_Ip" type="LineEdit" parent="Hud/join-lobby"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -34.0
+offset_top = 40.0
+offset_right = 33.0625
+offset_bottom = 71.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 9
+placeholder_text = "enter host ip"
+
+[node name="Enter_host_ip_label" type="Label" parent="Hud"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -87.0
+offset_right = 20.0
+offset_bottom = -64.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Enter host ip!!!"
+
+[node name="lobby" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="lobby"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -184.0
+offset_right = -144.0
+offset_bottom = 40.0
+grow_horizontal = 0
+scale = Vector2(4.64, 10)
+color = Color(0.151276, 0.151276, 0.151276, 1)
+
+[node name="text" type="Label" parent="lobby"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -180.0
+offset_right = -133.0
+offset_bottom = 23.0
+grow_horizontal = 0
+text = "Lobby"
+
+[node name="text2" type="Label" parent="lobby"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -179.0
+offset_top = 40.0
+offset_right = -126.0
+offset_bottom = 63.0
+grow_horizontal = 0
+text = "players:"
+
+[node name="player_one" type="Label" parent="lobby"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -179.0
+offset_top = 81.0
+offset_right = -126.0
+offset_bottom = 104.0
+grow_horizontal = 0
+
+[node name="text" type="Label" parent="lobby/player_one"]
+layout_mode = 0
+offset_left = 107.0
+offset_right = 147.0
+offset_bottom = 23.0
+text = "ready"
+
+[node name="player_two" type="Label" parent="lobby"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -179.0
+offset_top = 110.0
+offset_right = -126.0
+offset_bottom = 133.0
+grow_horizontal = 0
+
+[node name="ready_label" type="Label" parent="lobby/player_two"]
+layout_mode = 0
+offset_left = 108.0
+offset_right = 148.0
+offset_bottom = 23.0
+
+[node name="ready_button" type="Button" parent="lobby"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -179.0
+offset_top = -31.0
+offset_right = -123.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Ready"
+
+[node name="Delate_lobby_button" type="Button" parent="lobby"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -179.0
+offset_top = -31.0
+offset_right = -123.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Ready"
+
+[node name="Start_button" type="Button" parent="lobby"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -71.0
+offset_top = -31.0
+offset_right = -15.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Start"
+
+[connection signal="pressed" from="Hud/create-lobby" to="." method="_on_createlobby_pressed"]
+[connection signal="pressed" from="Hud/join-lobby" to="." method="_on_joinlobby_pressed"]

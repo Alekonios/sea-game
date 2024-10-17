@@ -1,6 +1,7 @@
 extends Node
 
 @onready var main_menu = $MainMenu
+@onready var new_game_menu = $MainMenu/New_Game_Menu
 @onready var address_entry = $MainMenu/VBoxContainer/adres
 
 var enet_peer = ENetMultiplayerPeer.new()
@@ -19,13 +20,7 @@ func remove_player(peer_id):
 		player.queue_free()
 
 func _on_hostbutton_pressed():
-	main_menu.hide()
-	enet_peer.create_server(PORT, 2)
-	multiplayer.multiplayer_peer = enet_peer
-	multiplayer.peer_connected.connect(add_player)
-	multiplayer.peer_disconnected.connect(remove_player)
-	
-	add_player(multiplayer.get_unique_id())
+	new_game_menu.show()
 
 
 func _on_joinbutton_pressed() -> void:
@@ -34,4 +29,21 @@ func _on_joinbutton_pressed() -> void:
 	multiplayer.multiplayer_peer = enet_peer
 	multiplayer.peer_connected.connect(add_player)
 	add_player(multiplayer.get_unique_id())
-	
+
+func _on_new_game_pressed() -> void:
+	main_menu.hide()
+	enet_peer.create_server(PORT, 2)
+	multiplayer.multiplayer_peer = enet_peer
+	multiplayer.peer_connected.connect(add_player)
+	multiplayer.peer_disconnected.connect(remove_player)
+	add_player(multiplayer.get_unique_id())
+
+
+func _on_load_game_pressed() -> void:
+	main_menu.hide()
+	enet_peer.create_server(PORT, 2)
+	multiplayer.multiplayer_peer = enet_peer
+	multiplayer.peer_connected.connect(add_player)
+	multiplayer.peer_disconnected.connect(remove_player)
+	add_player(multiplayer.get_unique_id())
+	SaveSingleTon.load_cube_func()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=67 format=4 uid="uid://bj73pp6ds87xp"]
+[gd_scene load_steps=68 format=4 uid="uid://bj73pp6ds87xp"]
 
 [ext_resource type="Script" path="res://scenes/charapters/players/charapter_movement.gd" id="1_o3ocm"]
 [ext_resource type="Shader" path="res://shaders/in_water.gdshader" id="2_vdug5"]
@@ -18,6 +18,7 @@
 [ext_resource type="AudioStream" uid="uid://dstakvtte72d4" path="res://sounds/Move_sounds/move_metall/13b85c71066cbcc.mp3" id="12_84we8"]
 [ext_resource type="AudioStream" uid="uid://chrgtfl672g5e" path="res://sounds/Move_sounds/move_metall/65dacc623f13dc6.mp3" id="13_osw1q"]
 [ext_resource type="Script" path="res://scenes/charapters/players/components/cameras_state_component.gd" id="15_403dp"]
+[ext_resource type="Script" path="res://scenes/charapters/players/components/pause_screen.gd" id="19_huqdo"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_4s884"]
 
@@ -1685,6 +1686,42 @@ camera = NodePath("../../camera_node/Camera3D")
 player = NodePath("../..")
 markers = [NodePath("../../looks/default"), NodePath("../../looks/back")]
 
+[node name="PauseScreen" type="CanvasLayer" parent="components" node_paths=PackedStringArray("player")]
+visible = false
+script = ExtResource("19_huqdo")
+player = NodePath("../..")
+
+[node name="ColorRect" type="ColorRect" parent="components/PauseScreen"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.219608, 0.219608, 0.219608, 0.607843)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="components/PauseScreen"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="components/PauseScreen/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 52
+text = "Pause"
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="components/PauseScreen/VBoxContainer"]
+layout_mode = 2
+text = "SAVE_GAME"
+
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_s043l")
 
@@ -1739,3 +1776,5 @@ transform = Transform3D(1, 0, 0, 0, 0.987264, -0.159089, 0, 0.159089, 0.987264, 
 
 [node name="back" type="Marker3D" parent="looks"]
 transform = Transform3D(1, 0, 0, 0, 0.987264, -0.159089, 0, 0.159089, 0.987264, 0.0491129, 2.64739, 1.99714)
+
+[connection signal="pressed" from="components/PauseScreen/VBoxContainer/Button" to="components/PauseScreen" method="_on_button_pressed"]

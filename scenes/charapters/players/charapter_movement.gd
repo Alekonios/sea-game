@@ -32,9 +32,15 @@ func _enter_tree() -> void:
 func _ready() -> void:
 	hide_ob()
 	if not is_multiplayer_authority(): return
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	camera.position.y = 1.9
 	camera_cur.current = is_multiplayer_authority()
+	mouse_mod_capture()
+	
+func mouse_mod_capture():
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	
+func mouse_mod_confiend():
+	Input.mouse_mode = Input.MOUSE_MODE_CONFINED
 	
 
 func _physics_process(delta: float) -> void:
@@ -59,7 +65,6 @@ func _physics_process(delta: float) -> void:
 		run = true
 	else:
 		run = false
-	print(camera.position)
 	var input_dir := Input.get_vector("left", "right", "forward", "back")
 	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if direction and !block:

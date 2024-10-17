@@ -1,7 +1,8 @@
-[gd_scene load_steps=58 format=4 uid="uid://bfg8v58buqo5s"]
+[gd_scene load_steps=60 format=4 uid="uid://bfg8v58buqo5s"]
 
 [ext_resource type="Script" path="res://scenes/locations/test/test.gd" id="1_qwl7r"]
 [ext_resource type="Texture2D" uid="uid://cd2cwywywf70u" path="res://addons/kenney_prototype_textures/dark/texture_01.png" id="2_16wt7"]
+[ext_resource type="Script" path="res://singletons/SaveSingleTon.gd" id="2_ecpl8"]
 [ext_resource type="Texture2D" uid="uid://c7o1wi2w5rlu0" path="res://addons/kenney_prototype_textures/dark/texture_05.png" id="3_adnmp"]
 [ext_resource type="Texture2D" uid="uid://dikf5a8h2q6uu" path="res://addons/kenney_prototype_textures/orange/texture_01.png" id="4_dyjvv"]
 [ext_resource type="Script" path="res://scenes/components/hitbox_component.gd" id="5_bpwuu"]
@@ -13,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://cy1rfumiyj1ln" path="res://scenes/ship/another_ship_test.tscn" id="10_gw441"]
 [ext_resource type="Script" path="res://scenes/other/Water.gd" id="11_c2prg"]
 [ext_resource type="Script" path="res://scenes/locations/test/penis TETS.gd" id="11_wkggo"]
+[ext_resource type="Script" path="res://scenes/locations/test/save_cube.gd" id="12_e3mok"]
 [ext_resource type="Texture2D" uid="uid://cdupdty3m1x67" path="res://addons/kenney_prototype_textures/red/texture_01.png" id="15_bmfkn"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rmd7l"]
@@ -77,12 +79,17 @@ roughness = 0.31
 [sub_resource type="BoxShape3D" id="BoxShape3D_32ll3"]
 size = Vector3(4.0376, 1.00366, 4.25092)
 
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_e1pe4"]
-bounce = 0.23
-
 [sub_resource type="BoxMesh" id="BoxMesh_ym6r1"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_apjrl"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_li7lg"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_i6rfr"]
 size = Vector3(5.15833, 3.04077, 3.95569)
@@ -252,6 +259,9 @@ data = PackedVector3Array(0.0089, -0.6508, 0.0152, 0.135, 0.6508, 0.0152, 0.135,
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_qwl7r")
 
+[node name="Node2" type="Node" parent="."]
+script = ExtResource("2_ecpl8")
+
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.124758, 0, 0.000926495)
 use_collision = true
@@ -302,6 +312,46 @@ text = "Join game"
 layout_mode = 2
 placeholder_text = "Host IP"
 alignment = 1
+
+[node name="New_Game_Menu" type="Control" parent="MainMenu"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="MainMenu/New_Game_Menu"]
+layout_mode = 1
+offset_left = -31.575
+offset_top = -50.665
+offset_right = 78.425
+offset_bottom = 101.75
+color = Color(0.259294, 0.259294, 0.259294, 1)
+
+[node name="newGame" type="Button" parent="MainMenu/New_Game_Menu"]
+layout_mode = 1
+offset_left = -19.0
+offset_top = -28.0
+offset_right = 69.0
+offset_bottom = 3.0
+text = "new game"
+
+[node name="loadGame" type="Button" parent="MainMenu/New_Game_Menu"]
+layout_mode = 1
+offset_left = -19.0
+offset_top = 29.0
+offset_right = 69.0
+offset_bottom = 60.0
+text = "load game
+"
 
 [node name="Node3D" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.76929, 0)
@@ -528,17 +578,49 @@ spawn_path = NodePath("../Node")
 
 [node name="Node" type="Node" parent="."]
 
-[node name="RigidBody3D" type="RigidBody3D" parent="."]
+[node name="SaveCube" type="RigidBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.03857, -3.96638)
-collision_layer = 2
 collision_mask = 7
-physics_material_override = SubResource("PhysicsMaterial_e1pe4")
+script = ExtResource("12_e3mok")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SaveCube"]
 mesh = SubResource("BoxMesh_ym6r1")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SaveCube"]
 shape = SubResource("BoxShape3D_apjrl")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="SaveCube"]
+replication_config = SubResource("SceneReplicationConfig_li7lg")
+
+[node name="Label3D" type="Label3D" parent="SaveCube"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.863573, 0)
+billboard = 1
+text = "SAVE BOX"
+
+[node name="Label3D2" type="Label3D" parent="SaveCube"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.929122, -0.0688696, 0)
+billboard = 1
+text = "SAVE BOX"
+
+[node name="Label3D3" type="Label3D" parent="SaveCube"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.908957, -0.0688696, 0)
+billboard = 1
+text = "SAVE BOX"
+
+[node name="Label3D4" type="Label3D" parent="SaveCube"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0557033, -0.773847, 0)
+billboard = 1
+text = "SAVE BOX"
+
+[node name="Label3D5" type="Label3D" parent="SaveCube"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0557033, 0.228073, 0.871735)
+billboard = 1
+text = "SAVE BOX"
+
+[node name="Label3D6" type="Label3D" parent="SaveCube"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0557033, 0.228073, -0.917813)
+billboard = 1
+text = "SAVE BOX"
 
 [node name="Node3D4" type="Node3D" parent="."]
 script = ExtResource("11_wkggo")
@@ -679,5 +761,7 @@ shape = SubResource("ConcavePolygonShape3D_o8i0h")
 
 [connection signal="pressed" from="MainMenu/VBoxContainer/Host-button" to="." method="_on_hostbutton_pressed"]
 [connection signal="pressed" from="MainMenu/VBoxContainer/Join-button" to="." method="_on_joinbutton_pressed"]
+[connection signal="pressed" from="MainMenu/New_Game_Menu/newGame" to="." method="_on_new_game_pressed"]
+[connection signal="pressed" from="MainMenu/New_Game_Menu/loadGame" to="." method="_on_load_game_pressed"]
 [connection signal="area_entered" from="Node3D4/PENIS_AREA" to="Node3D4" method="_on_penis_area_area_entered"]
 [connection signal="area_exited" from="Node3D4/PENIS_AREA" to="Node3D4" method="_on_penis_area_area_exited"]
