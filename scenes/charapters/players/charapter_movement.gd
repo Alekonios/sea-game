@@ -10,6 +10,8 @@ var mouse_sens = 0.1
 
 var run = false
 
+var view3h = false
+
 var ship_speed_z = 0.0
 
 @export var target_position : Vector3
@@ -88,6 +90,18 @@ func _physics_process(delta: float) -> void:
 		velocity.z = 0
 
 	move_and_slide()
+	
+	if Input.is_action_just_pressed("3th_view"):
+		if !view3h:
+			camera_cur = $camera_node/Node3D/SpringArm3D/Camera3D
+			camera_cur.current = true
+			show_ob()
+			view3h = true
+		elif view3h:
+			camera_cur = $camera_node/Camera3D
+			camera_cur.current = true
+			hide_ob()
+			view3h = false
 
 
 func PENIS_VIS():

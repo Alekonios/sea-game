@@ -1,4 +1,4 @@
-[gd_scene load_steps=68 format=4 uid="uid://bj73pp6ds87xp"]
+[gd_scene load_steps=70 format=4 uid="uid://bj73pp6ds87xp"]
 
 [ext_resource type="Script" path="res://scenes/charapters/players/charapter_movement.gd" id="1_o3ocm"]
 [ext_resource type="Shader" path="res://shaders/in_water.gdshader" id="2_vdug5"]
@@ -18,6 +18,7 @@
 [ext_resource type="AudioStream" uid="uid://dstakvtte72d4" path="res://sounds/Move_sounds/move_metall/13b85c71066cbcc.mp3" id="12_84we8"]
 [ext_resource type="AudioStream" uid="uid://chrgtfl672g5e" path="res://sounds/Move_sounds/move_metall/65dacc623f13dc6.mp3" id="13_osw1q"]
 [ext_resource type="Script" path="res://scenes/charapters/players/components/cameras_state_component.gd" id="15_403dp"]
+[ext_resource type="AudioStream" uid="uid://cbljbp2yufcsy" path="res://sounds/Move_sounds/move_metall/e5d2699a95b104a.mp3" id="15_kl6nd"]
 [ext_resource type="Script" path="res://scenes/charapters/players/components/pause_screen.gd" id="19_huqdo"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_4s884"]
@@ -1165,6 +1166,8 @@ _data = {
 "Walk_test": SubResource("Animation_t8xbf")
 }
 
+[sub_resource type="SeparationRayShape3D" id="SeparationRayShape3D_33v7n"]
+
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_nsk4f"]
 streams_count = 3
 stream_0/stream = ExtResource("7_08ii7")
@@ -1172,10 +1175,11 @@ stream_1/stream = ExtResource("8_psnm8")
 stream_2/stream = ExtResource("9_5g713")
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_1sosn"]
-streams_count = 3
+streams_count = 4
 stream_0/stream = ExtResource("11_7ltx0")
 stream_1/stream = ExtResource("12_84we8")
 stream_2/stream = ExtResource("13_osw1q")
+stream_3/stream = ExtResource("15_kl6nd")
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_s043l"]
 properties/0/path = NodePath("camera_node:rotation")
@@ -1648,6 +1652,17 @@ collide_with_areas = true
 
 [node name="Marker3D" type="Marker3D" parent="camera_node"]
 transform = Transform3D(1, 0, 0, 0, 0.987264, -0.159089, 0, 0.159089, 0.987264, 0, 0, 0)
+
+[node name="Node3D" type="Node3D" parent="camera_node"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.70847, 0, 0)
+
+[node name="SpringArm3D" type="SpringArm3D" parent="camera_node/Node3D"]
+collision_mask = 7
+shape = SubResource("SeparationRayShape3D_33v7n")
+spring_length = 3.0
+margin = 1.0
+
+[node name="Camera3D" type="Camera3D" parent="camera_node/Node3D/SpringArm3D"]
 
 [node name="Sounds" type="Node3D" parent="."]
 

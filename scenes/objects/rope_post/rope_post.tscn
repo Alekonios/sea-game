@@ -1,0 +1,87 @@
+[gd_scene load_steps=7 format=3 uid="uid://c32jsq3hx4tyq"]
+
+[ext_resource type="Script" path="res://scenes/objects/rope_post/rope_post.gd" id="1_3lkvh"]
+[ext_resource type="Script" path="res://scenes/components/hitbox_component.gd" id="1_wqgx4"]
+[ext_resource type="Material" uid="uid://ca2om606r2d3d" path="res://textures/tres/tres_grid/red_grid.tres" id="2_bpqdt"]
+[ext_resource type="Material" uid="uid://p41p5qfi35pc" path="res://textures/tres/tres_grid/purple_grid.tres" id="3_y6b0n"]
+
+[sub_resource type="Curve3D" id="Curve3D_78gmb"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 2.15337, 0.183035, 0, 0, 0, 0, 0, 0, 0, 2.16115, 3.68996, 0, 0, 0, 0, 0, 0, 0, 2.18599, 7.31149, 0, 0, 0, 0, 0, 0, 0, 2.17432, 13.2095, 0, 0, 0, 0, 0, 0, 0, 2.17438, 19.9578, 0, 0, 0, 0, 0, 0, 0, 2.19211, 25.9692, 0, 0, 0, 0, 0, 0, 0, 2.16628, 29.9729, 0, 0, 0, 0, 0, 0, 0, 2.1607, 31.6099),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 8
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0y3ab"]
+size = Vector3(2.32886, 2.57458, 1)
+
+[node name="rope_post" type="StaticBody3D" node_paths=PackedStringArray("pathfollow")]
+script = ExtResource("1_3lkvh")
+pathfollow = NodePath("Path3D/PathFollow3D")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0)
+size = Vector3(0.179443, 2.1084, 0.1698)
+material = ExtResource("2_bpqdt")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1, 0)
+size = Vector3(0.179443, 2.1084, 0.1698)
+material = ExtResource("2_bpqdt")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.14, 0)
+size = Vector3(2.18628, 0.189941, 0.1698)
+material = ExtResource("2_bpqdt")
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 31.5985)
+size = Vector3(0.179443, 2.1084, 0.1698)
+material = ExtResource("2_bpqdt")
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1, 31.5985)
+size = Vector3(0.179443, 2.1084, 0.1698)
+material = ExtResource("2_bpqdt")
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.14, 31.5985)
+size = Vector3(2.18628, 0.189941, 0.1698)
+material = ExtResource("2_bpqdt")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="."]
+transform = Transform3D(0.111559, 0, 0, 0, 0.111559, 0, 0, 0, 0.111559, 0, 2.16906, 15.8847)
+size = Vector3(1, 1, 283.177)
+material = ExtResource("3_y6b0n")
+
+[node name="Path3D" type="Path3D" parent="."]
+curve = SubResource("Curve3D_78gmb")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="Path3D"]
+transform = Transform3D(-1, -1.94111e-10, -8.74221e-08, 0, 0.999992, -0.00222037, 8.74228e-08, -0.00222037, -0.999992, 0, 2.15337, 0.183035)
+loop = false
+
+[node name="Hitbox" type="Area3D" parent="." node_paths=PackedStringArray("Usable_Object")]
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("1_wqgx4")
+have_rpc = true
+Usable_Object = NodePath("..")
+have_sender_with_rpc = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00964355, 1.11451, 0)
+shape = SubResource("BoxShape3D_0y3ab")
+
+[node name="Hitbox2" type="Area3D" parent="." node_paths=PackedStringArray("Usable_Object")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 31.5386)
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("1_wqgx4")
+have_rpc = true
+Usable_Object = NodePath("..")
+have_sender_with_rpc = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00964355, 1.11451, 0)
+shape = SubResource("BoxShape3D_0y3ab")
