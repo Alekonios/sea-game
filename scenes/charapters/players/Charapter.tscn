@@ -18,7 +18,7 @@
 [ext_resource type="AudioStream" uid="uid://dstakvtte72d4" path="res://sounds/Move_sounds/move_metall/13b85c71066cbcc.mp3" id="12_84we8"]
 [ext_resource type="AudioStream" uid="uid://chrgtfl672g5e" path="res://sounds/Move_sounds/move_metall/65dacc623f13dc6.mp3" id="13_osw1q"]
 [ext_resource type="Script" path="res://scenes/charapters/players/components/cameras_state_component.gd" id="15_403dp"]
-[ext_resource type="AudioStream" uid="uid://cbljbp2yufcsy" path="res://sounds/Move_sounds/move_metall/e5d2699a95b104a.mp3" id="15_kl6nd"]
+[ext_resource type="AudioStream" uid="uid://cbljbp2yufcsy" path="res://e5d2699a95b104a.mp3" id="15_kl6nd"]
 [ext_resource type="Script" path="res://scenes/charapters/players/components/parkour_component.gd" id="16_olarr"]
 [ext_resource type="Script" path="res://scenes/charapters/players/components/pause_screen.gd" id="19_huqdo"]
 

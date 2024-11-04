@@ -2,14 +2,11 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dndvb4nlwlxi6"
+uid="uid://fwxx85br3l7g"
 path.s3tc="res://.godot/imported/Shroom_main_5_Untitled_2.png-c49f0e23a40550dd4964dce833147f59.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
-}
-generator_parameters={
-"md5": "d9cce2887d417880749723c99994a588"
 }
 
 [deps]
