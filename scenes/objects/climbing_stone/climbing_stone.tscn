@@ -1,0 +1,43 @@
+[gd_scene load_steps=5 format=3 uid="uid://wirx24ee1i2f"]
+
+[ext_resource type="Material" uid="uid://ca2om606r2d3d" path="res://textures/tres/tres_grid/red_grid.tres" id="1_eubrs"]
+[ext_resource type="Script" path="res://scenes/objects/climbing_stone/climbing_stone.gd" id="1_tm67e"]
+[ext_resource type="Script" path="res://scenes/components/hitbox_component.gd" id="2_jopyb"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_8mqac"]
+radius = 0.727423
+
+[node name="climbing_stone" type="StaticBody3D" node_paths=PackedStringArray("hook_marker")]
+script = ExtResource("1_tm67e")
+_name = "climbing_stone"
+hook_marker = NodePath("Marker3D")
+
+[node name="Marker3D" type="Marker3D" parent="."]
+transform = Transform3D(0.230917, 0, 0, 0, 0.230917, 0, 0, 0, 0.230917, 0, 0.0655832, 0.129293)
+
+[node name="meshes" type="Node3D" parent="."]
+transform = Transform3D(0.230917, 0, 0, 0, 0.230917, 0, 0, 0, 0.230917, 0, -0.00611842, -0.00258218)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="meshes"]
+material = ExtResource("1_eubrs")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="meshes"]
+transform = Transform3D(0.710547, -0.646153, -0.278584, 0.220543, 0.580471, -0.783846, 0.668194, 0.495519, 0.554957, 0, 0, 0)
+material = ExtResource("1_eubrs")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="meshes"]
+transform = Transform3D(-0.316353, -0.71762, -0.620437, 0.220543, 0.580471, -0.783846, 0.922649, -0.384805, -0.0253673, 0, 0, 0)
+material = ExtResource("1_eubrs")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="meshes"]
+transform = Transform3D(-0.316353, -0.71762, -0.620437, -0.510538, 0.680027, -0.526227, 0.799545, 0.150283, -0.581501, 0, 0, 0)
+material = ExtResource("1_eubrs")
+
+[node name="Hitbox" type="Area3D" parent="."]
+transform = Transform3D(0.230917, 0, 0, 0, 0.230917, 0, 0, 0, 0.230917, 0, -0.00611842, -0.00258218)
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("2_jopyb")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox"]
+shape = SubResource("SphereShape3D_8mqac")

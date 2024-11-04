@@ -12,6 +12,7 @@ var run = false
 
 var view3h = false
 
+var handing = false
 var ship_speed_z = 0.0
 
 @export var target_position : Vector3
@@ -58,7 +59,8 @@ func _physics_process(delta: float) -> void:
 	$Label.text = str(Engine.get_frames_per_second())
 	
 	if not is_on_floor():
-		velocity += get_gravity() * 2 * delta
+		if !handing:
+			velocity += get_gravity() * 2 * delta
 
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
 		velocity.y = JUMP_VELOCITY

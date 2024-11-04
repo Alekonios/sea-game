@@ -58,7 +58,7 @@ material = ExtResource("3_y6b0n")
 curve = SubResource("Curve3D_78gmb")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="Path3D"]
-transform = Transform3D(-1, -1.94111e-10, -8.74221e-08, 0, 0.999992, -0.00222037, 8.74228e-08, -0.00222037, -0.999992, 0, 2.15337, 0.183035)
+transform = Transform3D(-1, -1.93945e-10, -8.74221e-08, 0, 0.999992, -0.00221847, 8.74228e-08, -0.00221847, -0.999992, 0, 2.15337, 0.183035)
 loop = false
 
 [node name="Hitbox" type="Area3D" parent="." node_paths=PackedStringArray("Usable_Object")]

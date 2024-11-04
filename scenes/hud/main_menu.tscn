@@ -1,15 +1,19 @@
 [gd_scene load_steps=2 format=3 uid="uid://dlbcpalq358am"]
 
-[ext_resource type="Script" path="res://scenes/hud/main_menu.gd" id="1_bhp00"]
+[ext_resource type="Script" path="res://scenes/locations/test/test.gd" id="1_8edwk"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_bhp00")
+
+[node name="MultiPlayer" type="Node" parent="."]
+script = ExtResource("1_8edwk")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -39,10 +43,52 @@ text = "Host game"
 layout_mode = 2
 text = "Join game"
 
-[node name="LineEdit" type="LineEdit" parent="VBoxContainer"]
+[node name="adres" type="LineEdit" parent="VBoxContainer"]
 layout_mode = 2
 placeholder_text = "Host IP"
 alignment = 1
 
-[connection signal="pressed" from="VBoxContainer/Host-button" to="." method="_on_hostbutton_pressed"]
-[connection signal="pressed" from="VBoxContainer/Join-button" to="." method="_on_joinbutton_pressed"]
+[node name="New_Game_Menu" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="New_Game_Menu"]
+layout_mode = 1
+offset_left = -31.575
+offset_top = -50.665
+offset_right = 78.425
+offset_bottom = 101.75
+color = Color(0.259294, 0.259294, 0.259294, 1)
+
+[node name="newGame" type="Button" parent="New_Game_Menu"]
+layout_mode = 1
+offset_left = -19.0
+offset_top = -28.0
+offset_right = 69.0
+offset_bottom = 3.0
+text = "new game"
+
+[node name="loadGame" type="Button" parent="New_Game_Menu"]
+layout_mode = 1
+offset_left = -19.0
+offset_top = 29.0
+offset_right = 69.0
+offset_bottom = 60.0
+text = "load game
+"
+
+[connection signal="pressed" from="VBoxContainer/Host-button" to="MultiPlayer" method="_on_hostbutton_pressed"]
+[connection signal="pressed" from="VBoxContainer/Join-button" to="MultiPlayer" method="_on_joinbutton_pressed"]
+[connection signal="pressed" from="New_Game_Menu/newGame" to="MultiPlayer" method="_on_new_game_pressed"]
+[connection signal="pressed" from="New_Game_Menu/loadGame" to="MultiPlayer" method="_on_load_game_pressed"]

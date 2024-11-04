@@ -1,8 +1,10 @@
 extends Node
 
-@onready var main_menu = $MainMenu
-@onready var new_game_menu = $MainMenu/New_Game_Menu
-@onready var address_entry = $MainMenu/VBoxContainer/adres
+@export var spawn_point : Marker3D
+
+@onready var main_menu = $".."
+@onready var new_game_menu = $"../New_Game_Menu"
+@onready var address_entry = $"../VBoxContainer/adres"
 
 var enet_peer = ENetMultiplayerPeer.new()
 
@@ -12,7 +14,8 @@ const PORT = 1200
 func add_player(peer_id):
 	var player = Player.instantiate()
 	player.name = str(peer_id)
-	add_child(player)
+	self.get_parent().get_parent().add_child(player)
+	player.global_position = spawn_point.global_position
 
 func remove_player(peer_id):
 	var player = get_node_or_null(str(peer_id))

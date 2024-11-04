@@ -1,4 +1,4 @@
-[gd_scene load_steps=70 format=4 uid="uid://bj73pp6ds87xp"]
+[gd_scene load_steps=71 format=4 uid="uid://bj73pp6ds87xp"]
 
 [ext_resource type="Script" path="res://scenes/charapters/players/charapter_movement.gd" id="1_o3ocm"]
 [ext_resource type="Shader" path="res://shaders/in_water.gdshader" id="2_vdug5"]
@@ -19,6 +19,7 @@
 [ext_resource type="AudioStream" uid="uid://chrgtfl672g5e" path="res://sounds/Move_sounds/move_metall/65dacc623f13dc6.mp3" id="13_osw1q"]
 [ext_resource type="Script" path="res://scenes/charapters/players/components/cameras_state_component.gd" id="15_403dp"]
 [ext_resource type="AudioStream" uid="uid://cbljbp2yufcsy" path="res://sounds/Move_sounds/move_metall/e5d2699a95b104a.mp3" id="15_kl6nd"]
+[ext_resource type="Script" path="res://scenes/charapters/players/components/parkour_component.gd" id="16_olarr"]
 [ext_resource type="Script" path="res://scenes/charapters/players/components/pause_screen.gd" id="19_huqdo"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_4s884"]
@@ -1196,6 +1197,7 @@ properties/3/spawn = true
 properties/3/replication_mode = 1
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_m6r0o"]
+radius = 0.230201
 
 [sub_resource type="Animation" id="Animation_ivw06"]
 length = 0.001
@@ -1306,7 +1308,6 @@ properties/1/replication_mode = 2
 [node name="Charapter" type="CharacterBody3D" node_paths=PackedStringArray("_SoundComponent", "_StateMacine", "_InteractionComponent", "camera", "camera_cur") groups=["PLAYER"]]
 collision_mask = 6
 floor_max_angle = 1.39626
-platform_on_leave = 1
 script = ExtResource("1_o3ocm")
 _SoundComponent = NodePath("components/SoundComponent")
 _StateMacine = NodePath("components/StateMacine")
@@ -1631,6 +1632,33 @@ skin = SubResource("Skin_d4tpd")
 mesh = SubResource("ArrayMesh_ikg5s")
 skin = SubResource("Skin_d4tpd")
 
+[node name="left_hand_IK" type="SkeletonIK3D" parent="Kalikotetstt/Armature_001/Skeleton3D"]
+unique_name_in_owner = true
+root_bone = &"Bone.007"
+tip_bone = &"Bone.009"
+target_node = NodePath("left_hand_NODE/Marker3D")
+
+[node name="left_hand_NODE" type="Node3D" parent="Kalikotetstt/Armature_001/Skeleton3D/left_hand_IK"]
+unique_name_in_owner = true
+transform = Transform3D(-0.603277, 0.260547, -0.753773, -0.0836824, 0.919236, 0.384714, 0.79313, 0.295167, -0.532749, -0.704, 3.71706, -0.469782)
+
+[node name="Marker3D" type="Marker3D" parent="Kalikotetstt/Armature_001/Skeleton3D/left_hand_IK/left_hand_NODE"]
+transform = Transform3D(1, 1.49012e-08, 0, -1.49012e-08, 1, -8.9407e-08, 0, 2.98023e-08, 1, 0, 0, 0)
+
+[node name="right_hand_IK" type="SkeletonIK3D" parent="Kalikotetstt/Armature_001/Skeleton3D"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 3.55271e-15, 0, 1, 0, -3.55271e-15, 0, 1, 0, 0, 0)
+root_bone = &"Bone.018"
+tip_bone = &"Bone.020"
+target_node = NodePath("right_hand_NODE/Marker3D2")
+
+[node name="right_hand_NODE" type="Node3D" parent="Kalikotetstt/Armature_001/Skeleton3D/right_hand_IK"]
+unique_name_in_owner = true
+transform = Transform3D(-0.721814, 0.161059, 0.673086, -0.062951, 0.953235, -0.295602, -0.689219, -0.255741, -0.677919, -0.704, 3.62491, 0.507676)
+
+[node name="Marker3D2" type="Marker3D" parent="Kalikotetstt/Armature_001/Skeleton3D/right_hand_IK/right_hand_NODE"]
+transform = Transform3D(1, -1.49012e-08, -2.98023e-08, 0, 1, -1.49012e-08, 0, 0, 1, 0, 0, 0)
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Kalikotetstt"]
 libraries = {
 "": SubResource("AnimationLibrary_l3ego")
@@ -1737,11 +1765,25 @@ horizontal_alignment = 1
 layout_mode = 2
 text = "SAVE_GAME"
 
+[node name="Components_with_vec" type="Node3D" parent="."]
+
+[node name="ParkourComponent" type="Node3D" parent="Components_with_vec" node_paths=PackedStringArray("player")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.60566, 0)
+script = ExtResource("16_olarr")
+player = NodePath("../..")
+
+[node name="Parkour_collider" type="RayCast3D" parent="Components_with_vec/ParkourComponent"]
+unique_name_in_owner = true
+target_position = Vector3(0, 0, -0.44)
+collision_mask = 10
+hit_from_inside = true
+collide_with_areas = true
+
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_s043l")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0.0800271)
 shape = SubResource("CapsuleShape3D_m6r0o")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
