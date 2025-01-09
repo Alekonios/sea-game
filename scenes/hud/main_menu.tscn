@@ -1,19 +1,25 @@
 [gd_scene load_steps=2 format=3 uid="uid://dlbcpalq358am"]
 
-[ext_resource type="Script" path="res://scenes/locations/test/test.gd" id="1_8edwk"]
+[ext_resource type="Script" path="res://scenes/hud/MainMenu.gd" id="1_o8eum"]
 
-[node name="MainMenu" type="Control"]
+[node name="MainMenu" type="Control" node_paths=PackedStringArray("Enter_Ip")]
 layout_mode = 3
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_o8eum")
+Enter_Ip = NodePath("VBoxContainer/adres")
 
-[node name="MultiPlayer" type="Node" parent="."]
-script = ExtResource("1_8edwk")
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.273519, 0.278896, 0.304262, 1)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -22,10 +28,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -34.5
-offset_top = -20.0
-offset_right = 34.5
-offset_bottom = 20.0
+offset_left = -45.5
+offset_top = -64.0
+offset_right = 45.5
+offset_bottom = 64.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -49,6 +55,7 @@ placeholder_text = "Host IP"
 alignment = 1
 
 [node name="New_Game_Menu" type="Control" parent="."]
+unique_name_in_owner = true
 visible = false
 layout_mode = 1
 anchors_preset = 8
@@ -88,7 +95,7 @@ offset_bottom = 60.0
 text = "load game
 "
 
-[connection signal="pressed" from="VBoxContainer/Host-button" to="MultiPlayer" method="_on_hostbutton_pressed"]
-[connection signal="pressed" from="VBoxContainer/Join-button" to="MultiPlayer" method="_on_joinbutton_pressed"]
-[connection signal="pressed" from="New_Game_Menu/newGame" to="MultiPlayer" method="_on_new_game_pressed"]
-[connection signal="pressed" from="New_Game_Menu/loadGame" to="MultiPlayer" method="_on_load_game_pressed"]
+[connection signal="pressed" from="VBoxContainer/Host-button" to="." method="_on_hostbutton_pressed"]
+[connection signal="pressed" from="VBoxContainer/Join-button" to="." method="_on_joinbutton_pressed"]
+[connection signal="pressed" from="New_Game_Menu/newGame" to="." method="_on_new_game_pressed"]
+[connection signal="pressed" from="New_Game_Menu/loadGame" to="." method="_on_load_game_pressed"]
